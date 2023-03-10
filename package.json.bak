@@ -1,0 +1,57 @@
+{
+  "name": "m-days-jquery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "webpack serve --mode=development --host 0.0.0.0 --no-firewall",
+    "build": "webpack --mode=production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KrimsonKing1337/m-days-jquery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KrimsonKing1337/m-days-jquery/issues"
+  },
+  "homepage": "https://github.com/KrimsonKing1337/m-days-jquery#readme",
+  "dependencies": {
+    "jquery": "^1.9.1",
+    "moment": "^2.29.4",
+    "reset-css": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/plugin-transform-object-assign": "^7.18.6",
+    "@babel/plugin-transform-runtime": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.21.0",
+    "@svgr/webpack": "^6.5.1",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.3",
+    "dotenv": "^16.0.3",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^8.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "ifdef-loader": "^2.3.2",
+    "mini-css-extract-plugin": "^2.7.3",
+    "postcss": "^8.4.21",
+    "postcss-loader": "^7.0.2",
+    "sass": "^1.58.3",
+    "sass-loader": "^13.2.0",
+    "string-replace-loader": "^3.1.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.7",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.76.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}

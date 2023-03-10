@@ -1,0 +1,22 @@
+<%
+var options = htmlWebpackPlugin.options;
+%>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#828282" />
+
+  <title>
+    m-days
+  </title>
+</head>
+
+<body>
+  <div id="root">
+	123
+  </div>
+</body>
+</html>
