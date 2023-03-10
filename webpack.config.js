@@ -1,4 +1,4 @@
-const { DefinePlugin } = require('webpack');
+const { DefinePlugin, ProvidePlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -26,6 +26,11 @@ module.exports = (env = {}, argv) => {
     new DefinePlugin({
       'process.env': JSON.stringify(dotenv.parsed),
       'isSbMode': JSON.stringify(sb),
+    }),
+	new ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
     }),
     new HtmlWebpackPlugin({
       template: './src/index.ejs',

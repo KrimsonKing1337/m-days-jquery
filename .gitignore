@@ -35,6 +35,7 @@ jspm_packages/
 *.sln
 *.sw?
 .DS_Store
+.bak
 
 # build folders
 dist
