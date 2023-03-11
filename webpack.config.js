@@ -27,13 +27,14 @@ module.exports = (env = {}, argv) => {
       'process.env': JSON.stringify(dotenv.parsed),
       'isSbMode': JSON.stringify(sb),
     }),
-	new ProvidePlugin({
+    new ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
     }),
     new HtmlWebpackPlugin({
       template: './src/index.ejs',
+      scriptLoading: 'blocking',
       isMobile: !!mobile,
       isProd,
     }),
@@ -139,12 +140,12 @@ module.exports = (env = {}, argv) => {
       historyApiFallback: true,
       hot: true,
       liveReload: false,
-	  allowedHosts: "all",
+      allowedHosts: 'all',
       // https: true, // доступ к камере работает только через https
     },
     output: {
       // пустой publicPath нужен для кордовы. она не может найти bundle.min.js, если его путь начинается с '/'
-      publicPath: mobile ? '' : '/',
+      publicPath: mobile ? '' : './',
       path: buildDir,
       filename: '[name].[contenthash].js',
     },
