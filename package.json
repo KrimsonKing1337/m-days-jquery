@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/KrimsonKing1337/m-days-jquery#readme",
   "dependencies": {
-    "jquery": "^1.9.1",
     "moment": "^2.29.4",
     "reset-css": "^5.0.1"
   },

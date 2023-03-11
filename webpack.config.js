@@ -27,16 +27,17 @@ module.exports = (env = {}, argv) => {
       'process.env': JSON.stringify(dotenv.parsed),
       'isSbMode': JSON.stringify(sb),
     }),
-    new ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    }),
     new HtmlWebpackPlugin({
       template: './src/index.ejs',
       scriptLoading: 'blocking',
       isMobile: !!mobile,
       isProd,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{
+        from: './src/vendors',
+        to: './',
+      }],
     }),
   ];
 
