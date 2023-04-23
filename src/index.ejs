@@ -3,20 +3,33 @@ var options = htmlWebpackPlugin.options;
 %>
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-
-  <script src="./jquery-1.9.1.min.js"></script>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
 
   <title>
     m-days
   </title>
+
+  <style>
+    html,
+    body,
+    #root {
+        height: 100%;
+        width: 100%;
+    }
+  </style>
 </head>
 
 <body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+
   <div id="root">
-	123
+    <%= require('components/Bg/Bg.ejs')() %>
   </div>
 </body>
 </html>

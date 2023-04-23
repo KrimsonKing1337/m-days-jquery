@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
@@ -14,6 +15,7 @@ module.exports = (env = {}, argv) => {
   const isProd = webpackMode === 'production';
 
   const plugins = [
+    new MiniCssExtractPlugin(),
     new CleanWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin({
       typescript: {
@@ -34,11 +36,13 @@ module.exports = (env = {}, argv) => {
       isProd,
     }),
     new CopyWebpackPlugin({
-      patterns: [{
-        from: './src/vendors',
-        to: './',
-      }],
-    }),
+      patterns: [
+        {
+          from: './src/assets',
+          to: 'assets',
+        },
+      ],
+    })
   ];
 
   const rules = [
@@ -59,29 +63,39 @@ module.exports = (env = {}, argv) => {
       exclude: /node_modules/,
     },
     {
-      test: /\.s?css$/,
+      test: /\.css$/,
       use: [
-        'style-loader',
+        MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
           options: {
-            modules: {
-              localIdentName: '[name]__[local]__[hash:base64:5]',
-            },
+            url: false,
+            modules: false,
+          },
+        },
+      ],
+    },
+    {
+      test: /\.scss$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            url: false,
+            modules: false,
           },
         },
         {
           loader: 'postcss-loader',
           options: {
             postcssOptions: {
-              ident: 'postcss',
               plugins: [
-                require('autoprefixer'),
-              ],
+                require('autoprefixer')
+              ]
             },
           },
         },
-        { loader: 'sass-loader' },
       ],
     },
     {
@@ -110,11 +124,24 @@ module.exports = (env = {}, argv) => {
           loader: 'url-loader',
           options: {
             esModule: false,
+            name: '[name].[ext]',
+            outputPath: 'assets/',
           },
         },
       ],
     },
     { test: /\.(woff|woff2|eot|ttf|otf)$/, use: ['url-loader?limit=100000'] },
+    {
+      test: /\.ejs$/,
+      use: [
+        {
+          loader: 'ejs-loader',
+          options: {
+            esModule: false,
+          }
+        }
+      ]
+    },
   ];
 
   if (mobile) {
@@ -132,7 +159,7 @@ module.exports = (env = {}, argv) => {
   const buildDir = path.join(__dirname, (mobile ? 'cordova/www' : 'dist'));
 
   return {
-    entry: ['./src/index.js'],
+    entry: ['./src/index.ts'],
     mode: webpackMode,
     devtool: !isProd ? 'eval-source-map' : false,
     devServer: {
@@ -148,7 +175,7 @@ module.exports = (env = {}, argv) => {
       // пустой publicPath нужен для кордовы. она не может найти bundle.min.js, если его путь начинается с '/'
       publicPath: mobile ? '' : './',
       path: buildDir,
-      filename: '[name].[contenthash].js',
+      filename: '[name]_[contenthash].js',
     },
     target: !isProd ? 'web' : ['web', 'es5'],
     resolve: {
