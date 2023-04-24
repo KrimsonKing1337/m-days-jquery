@@ -96,6 +96,9 @@ module.exports = (env = {}, argv) => {
             },
           },
         },
+        {
+          loader: 'sass-loader',
+        }
       ],
     },
     {
