@@ -38,8 +38,8 @@ module.exports = (env = {}, argv) => {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: './src/assets',
-          to: 'assets',
+          from: './public',
+          to: './',
         },
       ],
     })
@@ -186,7 +186,7 @@ module.exports = (env = {}, argv) => {
       modules: [
         path.resolve(__dirname, './src'),
         path.resolve(__dirname, './node_modules'),
-        path.resolve(__dirname, './assets'),
+        path.resolve(__dirname, './public'),
       ],
       alias: {
         '@src': path.resolve(__dirname, 'src'),
