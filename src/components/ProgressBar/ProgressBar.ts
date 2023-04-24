@@ -1,1 +1,59 @@
 import './ProgressBar.scss';
+
+import { twoDigitsAlways } from 'utils/twoDigitsAlways';
+
+import { getValues } from './utils';
+
+$(document).ready(() => {
+  const $parent = $('.js-progress-bar');
+
+  const $year = $parent.find('.js-year');
+  const $month = $parent.find('.js-month');
+  const $hours = $parent.find('.js-hours');
+  const $minutes = $parent.find('.js-minutes');
+  const $seconds = $parent.find('.js-seconds');
+  const $progressWalking = $parent.find('.js-progress-walking');
+  const $day = $parent.find('.js-day');
+  const $percent = $parent.find('.js-percent');
+  const $percentFull = $parent.find('.js-percent-full');
+
+  const updateValues = () => {
+    const values = getValues();
+
+    const {
+      year,
+      day,
+      nameOfDay,
+      month,
+      hours,
+      minutes,
+      seconds,
+      progressFull,
+      dayOfYear,
+      daysInYear,
+      progressShort,
+    } = values;
+
+    const monthToPrint = twoDigitsAlways(month);
+    const hoursToPrint = twoDigitsAlways(hours);
+    const minutesToPrint = twoDigitsAlways(minutes);
+    const secondsToPrint = twoDigitsAlways(seconds);
+
+    $year.text(year);
+    $month.text(`${day}.${monthToPrint} ${nameOfDay}`);
+    $hours.text(`${hoursToPrint}:`);
+    $minutes.text(minutesToPrint);
+    $seconds.text(secondsToPrint);
+    $day.text(`${dayOfYear} of ${daysInYear} monochrome days`);
+    $percent.text(`${progressShort}%`);
+    $percentFull.text(`${progressFull}%`);
+
+    $progressWalking.css('width', `${progressFull}%`);
+  }
+
+  updateValues();
+
+  setInterval(() => {
+    updateValues();
+  }, 100);
+});
