@@ -4,16 +4,21 @@ import { getRandomImgPath } from './utils';
 
 $(document).ready(() => {
   const $bg = $('.js-bg');
+  const $bgNext = $('.js-bg-next');
   const $animWrapper = $('.js-anim-wrapper');
+
+  let bgNext = getRandomImgPath();
 
   const changeOpacity = (value: string) => {
     $animWrapper.css('opacity', value);
   }
 
   const changeImage = () => {
-    const randomImage = getRandomImgPath();
+    $bg.css('background-image', `url(${bgNext})`);
 
-    $bg.css('background-image', `url(${randomImage})`);
+    bgNext = getRandomImgPath();
+
+    $bgNext.css('background-image', `url(${bgNext})`);
   }
 
   changeImage();
