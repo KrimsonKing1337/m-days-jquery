@@ -22,15 +22,16 @@
 
 .ContentWrapper {
   width: 100%;
-  height: 250px;
+  max-height: 250px;
   max-width: 1200px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   padding: 0 2%;
   color: #fff;
   opacity: 0.65;
+  margin-top: 50px;
 }
 
 @mixin Block {
@@ -40,21 +41,25 @@
   justify-content: center;
 }
 
+@mixin SmallScreen() {
+  @media screen and (max-width: 900px) {
+    @content;
+  }
+}
+
 .Left {
   @include Block;
-
   max-width: 30%;
 }
 
 .Center {
   @include Block;
-
-  flex-shrink: 1;
+  flex: 1;
+  padding: 0 10px;
 }
 
 .Right {
   @include Block;
-
   max-width: 30%;
 }
 
@@ -62,6 +67,10 @@
   font-family: 'Avenir LT Std 95 Black Oblique';
   font-size: 51px;
   color: #fff;
+
+  @include SmallScreen {
+    font-size: 30px;
+  }
 }
 
 .Month {
@@ -71,6 +80,10 @@
   padding-top: 8px;
   color: #fff;
   background: #020202;
+
+  @include SmallScreen {
+    font-size: 24px;
+  }
 }
 
 .Day {
@@ -78,6 +91,16 @@
   font-size: 38px;
   margin-top: 15px;
   color: #fff;
+
+  @include SmallScreen {
+    font-size: 24px;
+  }
+}
+
+.DayLabel {
+  @include SmallScreen {
+    display: none;
+  }
 }
 
 .Time {
@@ -90,6 +113,10 @@
   font-family: 'Avenir LT Std 95 Black Oblique';
   font-size: 98px;
   color: #fff;
+
+  @include SmallScreen {
+    font-size: 50px;
+  }
 }
 
 .Seconds {
@@ -99,6 +126,10 @@
   padding-left: 10px;
   top: -5px;
   color: #fff;
+
+  @include SmallScreen {
+    font-size: 36px;
+  }
 }
 
 .Progress {
@@ -116,6 +147,10 @@
   font-family: 'Avenir LT Std 95 Black Oblique';
   font-size: 51px;
   color: #fff;
+
+  @include SmallScreen {
+    font-size: 30px;
+  }
 }
 
 .PercentFull {
@@ -125,4 +160,8 @@
   margin-top: 15px;
   padding-top: 8px;
   color: #fff;
+
+  @include SmallScreen {
+    font-size: 24px;
+  }
 }

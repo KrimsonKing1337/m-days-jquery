@@ -13,7 +13,7 @@ $(document).ready(() => {
   const $minutes = $parent.find('.js-minutes');
   const $seconds = $parent.find('.js-seconds');
   const $progressWalking = $parent.find('.js-progress-walking');
-  const $day = $parent.find('.js-day');
+  const $day = $parent.find('.js-day-value');
   const $percent = $parent.find('.js-percent');
   const $percentFull = $parent.find('.js-percent-full');
 
@@ -44,7 +44,7 @@ $(document).ready(() => {
     $hours.text(`${hoursToPrint}:`);
     $minutes.text(minutesToPrint);
     $seconds.text(secondsToPrint);
-    $day.text(`${dayOfYear} of ${daysInYear} monochrome days`);
+    $day.text(`${dayOfYear} of ${daysInYear}`);
     $percent.text(`${progressShort}%`);
     $percentFull.text(`${progressFull}%`);
 

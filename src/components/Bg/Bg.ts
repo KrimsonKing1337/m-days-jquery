@@ -32,6 +32,6 @@ $(document).ready(() => {
 
     setTimeout(() => {
       changeOpacity('1');
-    }, 700)
+    }, 700);
   }, 12000);
 });
