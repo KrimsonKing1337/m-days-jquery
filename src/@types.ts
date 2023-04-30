@@ -7,7 +7,7 @@ export type CurrentWeather = {
   windspeed: number;
 };
 
-export type Weather = {
+export type WeatherResp = {
   current_weather: CurrentWeather;
   elevation: number;
   generationtime_ms: number;

@@ -4,9 +4,8 @@ const options = {
   maximumAge: 0,
 };
 
-export function getCurrentPosition(
-  successCb: (pos: GeolocationPosition) => void,
-  errorCb: (pos: GeolocationPositionError) => void,
-) {
-  navigator.geolocation.getCurrentPosition(successCb, errorCb, options);
-}
+export const getCurrentPosition = () => {
+  return new Promise<GeolocationCoordinates>((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition((pos) => resolve(pos.coords), reject, options);
+  });
+};
