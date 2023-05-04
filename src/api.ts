@@ -1,14 +1,13 @@
-// import queryString from 'query-string';
+import axios, { AxiosResponse } from 'axios';
 
 import { WeatherResp } from './@types';
-import { fetchAsync } from './utils/fetchAsync';
 
 export type getCurrentWeatherParams = {
   latitude: number;
   longitude: number;
 };
 
-export async function getCurrentWeather({ latitude, longitude }: getCurrentWeatherParams): Promise<WeatherResp> {
+export async function getCurrentWeather({ latitude, longitude }: getCurrentWeatherParams) {
   const params = {
     latitude,
     longitude,
@@ -17,10 +16,9 @@ export async function getCurrentWeather({ latitude, longitude }: getCurrentWeath
 
   console.log(`latitude: ${params.latitude}, longitude: ${params.longitude}`);
 
-  // todo: queryString не работает
-  return await fetchAsync(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
-}
+  // если делать https запрос, у safari на старых ios возникает ошибка: не могу установить безопасное соединение
+  // поэтому, отрываем приложение через https, но запрос на погоду делаем через http
+  const result: AxiosResponse<WeatherResp> = await axios.get(`http://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
 
-export async function getTestWeather(): Promise<WeatherResp> {
-  return await fetchAsync(`https://api.open-meteo.com/v1/forecast`);
+  return result.data;
 }
