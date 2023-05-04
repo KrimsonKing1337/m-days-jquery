@@ -18,7 +18,7 @@ async function updateWeather() {
 
     weather = await getCurrentWeather({ latitude, longitude });
   } catch (e: any) {
-    alert(e.message);
+    console.warn(e.message);
 
     return;
   }

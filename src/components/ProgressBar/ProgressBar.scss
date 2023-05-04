@@ -8,37 +8,41 @@
   left: 0;
   right: 0;
   margin: auto;
+  height: 100%;
+  width: 100%;
 }
 
 .Shadow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.4);
 }
 
 .ContentWrapper {
+  position: absolute;
+  z-index: 2;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
   width: 100%;
-  max-height: 250px;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2%;
+  height: 200px;
   color: #fff;
   opacity: 0.65;
-  margin-top: 50px;
 }
 
 @mixin Block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 @mixin SmallScreen() {
@@ -54,7 +58,7 @@
 
 .Center {
   @include Block;
-  flex: 1;
+  width: 40%;
   padding: 0 10px;
 }
 
@@ -64,6 +68,8 @@
 }
 
 .Year {
+  display: block;
+  text-align: center;
   font-family: 'Avenir LT Std 95 Black Oblique';
   font-size: 51px;
   color: #fff;
@@ -74,6 +80,8 @@
 }
 
 .Month {
+  display: block;
+  text-align: center;
   font-family: 'Avenir LT Std 35 Light Oblique';
   font-size: 38px;
   margin-top: 15px;
@@ -87,6 +95,7 @@
 }
 
 .Day {
+  display: block;
   font-family: 'Avenir LT Std 35 Light Oblique';
   font-size: 38px;
   margin-top: 15px;
@@ -104,9 +113,8 @@
 }
 
 .Time {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
+  display: block;
+  text-align: center;
 }
 
 .HoursOrMinutes {
@@ -144,6 +152,8 @@
 }
 
 .Percent {
+  display: block;
+  text-align: center;
   font-family: 'Avenir LT Std 95 Black Oblique';
   font-size: 51px;
   color: #fff;
@@ -154,6 +164,8 @@
 }
 
 .PercentFull {
+  display: block;
+  text-align: center;
   font-family: 'Avenir LT Std 35 Light Oblique';
   font-size: 38px;
   background: #020202;
