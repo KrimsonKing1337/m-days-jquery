@@ -5,8 +5,7 @@ import type { WeatherResp } from '@types';
 import { getCurrentPosition } from 'utils/gpsApi';
 import { getCurrentWeather } from 'api';
 
-// todo: update every 15 minutes
-$(document).ready(async () => {
+async function updateWeather() {
   const $weather = $('.js-weather');
 
   let geoLocation: GeolocationCoordinates | null = null;
@@ -28,4 +27,12 @@ $(document).ready(async () => {
   const signNearTheTemperature = temperatureIsNotSubZero ? '+' : '-';
 
   $weather.text(`${signNearTheTemperature}${weather?.current_weather.temperature} °C`);
+}
+
+$(document).ready(() => {
+  updateWeather();
+
+  setInterval(() => {
+    updateWeather();
+  }, 900000); // 15 min
 });
