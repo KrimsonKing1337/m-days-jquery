@@ -18,16 +18,35 @@
 <br />
 
 <div id="info"></div>
+
 <br />
+
 <br />
 
 <div id="res"></div>
+
+<br />
+<br />
+
+<div id="promise"></div>
 
 <script>
   document.getElementById('root').innerHTML = 'Changed! JS is working!'
   document.getElementById('info').innerHTML = window.navigator.userAgent;
   document.getElementById('res').innerHTML = 'width: ' + window.screen.availWidth.toString()
     + ' height: ' + window.screen.availHeight.toString();
+
+  function makePromise() {
+    return new Promise(function(resolve) {
+      setTimeout(function() {
+        resolve();
+      }, 1000);
+    });
+  }
+
+  makePromise().then(function() {
+    document.getElementById('promise').innerHTML = 'Promises work!';
+  });
 
 </script>
 </body>
