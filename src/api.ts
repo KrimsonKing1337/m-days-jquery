@@ -15,7 +15,7 @@ export async function getCurrentWeather({ latitude, longitude }: getCurrentWeath
     current_weather: true,
   };
 
-  console.log(params);
+  console.log(`latitude: ${params.latitude}, longitude: ${params.longitude}`);
 
   // todo: queryString не работает
   return await fetchAsync(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);

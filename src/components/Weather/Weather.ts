@@ -18,7 +18,7 @@ async function updateWeather() {
 
     weather = await getCurrentWeather({ latitude, longitude });
   } catch (e: any) {
-    console.warn(e.message);
+    console.error(JSON.stringify(e));
 
     return;
   }
