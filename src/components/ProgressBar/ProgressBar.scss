@@ -53,18 +53,16 @@
 
 .Left {
   @include Block;
-  max-width: 30%;
 }
 
 .Center {
   @include Block;
-  width: 40%;
+  width: 55%;
   padding: 0 10px;
 }
 
 .Right {
   @include Block;
-  max-width: 30%;
 }
 
 .Year {
