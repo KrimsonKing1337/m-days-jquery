@@ -7,7 +7,7 @@
 
 .WeatherIcon {
   display: none; // changed by script
-  vertical-align: baseline;
+  vertical-align: middle;
   height: 64px;
   width: 64px;
   margin-right: 10px;
@@ -15,7 +15,7 @@
 
 .WeatherTemp {
   display: inline-block;
-  vertical-align: baseline;
+  vertical-align: middle;
   font-family: "Avenir LT Std 35 Light Oblique";
   font-size: 38px;
   color: #fff;
