@@ -84,7 +84,7 @@ async function updateWeather() {
   } else if (weathercode === 1 || weathercode === 2) {
     iconSrc = 'partly-cloudy-day.png';
   } else if (weathercode === 3) {
-    iconSrc = 'cloudy.png';
+    iconSrc = 'cloud.png';
   } else if (weathercode === 45 || weathercode === 48) {
     iconSrc = 'fog.png';
   } else if (weathercode === 51 || weathercode === 53 || weathercode === 55) {
