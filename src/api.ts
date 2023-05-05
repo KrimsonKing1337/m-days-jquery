@@ -5,9 +5,10 @@ import { WeatherResp } from './@types';
 export type getCurrentWeatherParams = {
   latitude: number;
   longitude: number;
+  protocol: 'http' | 'https';
 };
 
-export async function getCurrentWeather({ latitude, longitude }: getCurrentWeatherParams) {
+export async function getCurrentWeather({ protocol, latitude, longitude }: getCurrentWeatherParams) {
   const params = {
     latitude,
     longitude,
@@ -24,7 +25,9 @@ export async function getCurrentWeather({ latitude, longitude }: getCurrentWeath
    попытаться определять по user-agent или ещё по каким-нибудь особенностям какой перед нами девайс и в зависимости
    от этого запросы швырять либо на http, либо на https
   */
-  const result: AxiosResponse<WeatherResp> = await axios.get('http://api.open-meteo.com/v1/forecast', { params });
+  const result: AxiosResponse<WeatherResp> = await axios.get(`${protocol}://api.open-meteo.com/v1/forecast`, { params });
+
+  console.log(result);
 
   return result.data;
 }

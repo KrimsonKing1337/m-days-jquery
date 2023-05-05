@@ -34,24 +34,39 @@ async function updateWeather() {
   const $weatherIcon = $weather.find('.js-weather-icon');
   const $weatherTemp = $weather.find('.js-weather-temp');
 
-  let geoLocation: GeolocationCoordinates | null = null;
+  const geoLocation = await getCurrentPosition();
+
+  const { latitude, longitude } = geoLocation;
+
+  /*
+  * здесь я дважды делаю запрос на получение погоды из-за политики браузеров.
+  * старая сафари позволяет делать запросы на http, когда основной домен в https.
+  * новые браузеры так не дают сделать.
+  * но https нужен для геолокации, если зайти с http - она работать не будет
+  * (по крайней мере, на сафари так)
+  * */
+
   let weather: WeatherResp | null = null;
 
   try {
-    geoLocation = await getCurrentPosition();
-
-    const { latitude, longitude } = geoLocation;
-
-    weather = await getCurrentWeather({ latitude, longitude });
+    weather = await getCurrentWeather({ latitude, longitude, protocol: 'http' });
   } catch (e) {
     const error = e as AxiosError;
 
     catchError(error);
-
-    return;
   }
 
-  if (!weather.current_weather) {
+  if (!weather) {
+    try {
+      weather = await getCurrentWeather({ latitude, longitude, protocol: 'https' });
+    } catch (e) {
+      const error = e as AxiosError;
+
+      catchError(error);
+    }
+  }
+
+  if (!weather || !weather.current_weather) {
     return;
   }
 
