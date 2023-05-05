@@ -3,6 +3,19 @@
   top: 50px;
   left: 50px;
   z-index: 1;
+}
+
+.WeatherIcon {
+  display: none; // changed by script
+  vertical-align: baseline;
+  height: 64px;
+  width: 64px;
+  margin-right: 10px;
+}
+
+.WeatherTemp {
+  display: inline-block;
+  vertical-align: baseline;
   font-family: "Avenir LT Std 35 Light Oblique";
   font-size: 38px;
   color: #fff;
