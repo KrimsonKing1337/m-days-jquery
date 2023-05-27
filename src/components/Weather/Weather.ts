@@ -70,55 +70,67 @@ async function updateWeather() {
     return;
   }
 
-  const { temperature, weathercode } = weather.current_weather;
+  const { temperature, weathercode, is_day } = weather.current_weather;
 
   const temperatureIsNotSubZero = temperature > 0;
   const signNearTheTemperature = temperatureIsNotSubZero ? '+' : '-';
 
   $weatherTemp.text(`${signNearTheTemperature}${temperature} °C`);
 
-  let iconSrc = '';
+  const isDay = !!is_day;
+
+  let iconSrc = '999.svg';
 
   if (weathercode === 0) {
-    iconSrc = 'sun.png';
-  } else if (weathercode === 1 || weathercode === 2) {
-    iconSrc = 'partly-cloudy-day.png';
+    isDay ? iconSrc = '100.svg' : iconSrc = '150.svg';
+  } else if (weathercode === 1) {
+    isDay ? iconSrc = '102.svg' : iconSrc = '152.svg';
+  } else if (weathercode === 2) {
+    isDay ? iconSrc = '101.svg' : iconSrc = '151.svg';
   } else if (weathercode === 3) {
-    iconSrc = 'cloud.png';
-  } else if (weathercode === 45 || weathercode === 48) {
-    iconSrc = 'fog.png';
-  } else if (weathercode === 51 || weathercode === 53 || weathercode === 55) {
-    iconSrc = 'light-rain.png';
+    iconSrc = '104.svg';
+  } else if (weathercode === 45) {
+    iconSrc = '500.svg';
+  } else if (weathercode === 48) {
+    iconSrc = '501.svg';
+  } else if (weathercode === 51) {
+    iconSrc = '309.svg';
+  } else if (weathercode === 53) {
+    iconSrc = '311.svg';
+  } else if (weathercode === 55) {
+    iconSrc = '312.svg';
   } else if (weathercode === 56 || weathercode === 57) {
-    iconSrc = 'light-snow.png';
+    iconSrc = '309.svg';
   } else if (weathercode === 61) {
-    iconSrc = 'light-rain.png';
+    iconSrc = '305.svg';
   } else if (weathercode === 63) {
-    iconSrc = 'rain.png';
+    iconSrc = '306.svg';
   } else if (weathercode === 65) {
-    iconSrc = 'heavy-rain.png';
+    iconSrc = '307.svg';
   } else if (weathercode === 66 || weathercode === 67) {
-    iconSrc = 'sleet.png';
+    iconSrc = '405.svg';
   } else if (weathercode === 71) {
-    iconSrc = 'light-snow.png';
-  } else if (weathercode === 73 || weathercode === 75) {
-    iconSrc = 'snow.png';
+    iconSrc = '400.svg';
+  } else if (weathercode === 73) {
+    iconSrc = '401.svg';
+  } else if (weathercode === 75) {
+    iconSrc = '402.svg';
   } else if (weathercode === 77) {
-    iconSrc = 'light-snow.png';
-  } else if (weathercode === 80 || weathercode === 81 || weathercode === 82) {
-    iconSrc = 'torrential-rain.png';
+    iconSrc = '400.svg';
+  } else if (weathercode === 80) {
+    isDay ? iconSrc = '300.svg' : iconSrc = '350.svg';
+  } else if (weathercode === 81 || weathercode === 82) {
+    isDay ? iconSrc = '301.svg' : iconSrc = '351.svg';
   } else if (weathercode === 85 || weathercode === 86) {
-    iconSrc = 'snow-storm.png';
+    isDay ? iconSrc = '407.svg' : iconSrc = '457.svg';
   } else if (weathercode === 95) {
-    iconSrc = 'storm.png';
+    iconSrc = '302.svg';
   } else if (weathercode === 96 || weathercode === 99) {
-    iconSrc = 'hail.png';
+    iconSrc = '304.svg';
   }
 
-  if (iconSrc) {
-    $weatherIcon.attr('src', `icons/${iconSrc}`);
-    $weatherIcon.css('display', 'inline-block');
-  }
+  $weatherIcon.attr('src', `icons/weather/${iconSrc}`);
+  $weatherIcon.css('display', 'inline-block');
 }
 
 $(document).ready(() => {
