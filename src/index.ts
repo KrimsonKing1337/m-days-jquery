@@ -10,7 +10,6 @@ import './vendors/bluebird.min.js';
 import './components/Bg/Bg';
 import './components/ProgressBar/ProgressBar';
 import './components/Weather/Weather';
-import './components/MainQuestion/MainQuestion';
 
 function hideAddressBar() {
   window.scroll(0, 1);
