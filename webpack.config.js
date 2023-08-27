@@ -9,6 +9,7 @@ const path = require('path');
 
 const publicFolder = path.join(__dirname, '../m-days-public/');
 const fontsFolder = path.join(__dirname, '../m-days-core/src/assets/fonts/');
+
 const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
 
 module.exports = (env = {}, argv) => {
