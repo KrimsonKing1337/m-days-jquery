@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode=development --host 0.0.0.0",
     "build": "npm run scan-imgs && webpack --mode=production",
-    "scan-imgs": "node ./src/utils/scanImgs.ts",
+    "scan-imgs": "node ../m-days-core/scripts/scanImgs.js ../m-days-public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "browserslist": [
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/KrimsonKing1337/m-days-jquery#readme",
   "dependencies": {
+    "m-days-core": "file:../m-days-core/tgz/m-days-core-0.0.12.tgz",
     "axios": "^0.21.2",
     "moment": "^2.29.4",
     "query-string": "^8.1.0",

@@ -7,12 +7,15 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
+const publicFolder = path.join(__dirname, '../m-days-public/');
+const fontsFolder = path.join(__dirname, '../m-days-core/src/assets/fonts/');
 const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
 
 module.exports = (env = {}, argv) => {
   const webpackMode = argv.mode;
   const { analyze, mobile, sb } = env;
   const isProd = webpackMode === 'production';
+  const processEnv = dotenv.parsed;
 
   const plugins = [
     new MiniCssExtractPlugin(),
@@ -26,7 +29,7 @@ module.exports = (env = {}, argv) => {
       },
     }),
     new DefinePlugin({
-      'process.env': JSON.stringify(dotenv.parsed),
+      'process.env': JSON.stringify(processEnv),
       'isSbMode': JSON.stringify(sb),
     }),
     new HtmlWebpackPlugin({
@@ -38,8 +41,12 @@ module.exports = (env = {}, argv) => {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: './public',
+          from: `${publicFolder}/`,
           to: './',
+        },
+        {
+          from: `${fontsFolder}/`,
+          to: './fonts',
         },
       ],
     })
@@ -186,7 +193,7 @@ module.exports = (env = {}, argv) => {
       modules: [
         path.resolve(__dirname, './src'),
         path.resolve(__dirname, './node_modules'),
-        path.resolve(__dirname, './public'),
+        path.resolve(publicFolder),
       ],
       alias: {
         '@src': path.resolve(__dirname, 'src'),
