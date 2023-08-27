@@ -1,8 +1,6 @@
 import './ProgressBar.scss';
 
-import { twoDigitsAlways } from 'utils/twoDigitsAlways';
-
-import { getValues } from './utils';
+import { twoDigitsAlways, getValuesForProgressBar } from 'm-days-core/utils';
 
 $(() => {
   const $parent = $('.js-progress-bar');
@@ -18,7 +16,7 @@ $(() => {
   const $percentFull = $parent.find('.js-percent-full');
 
   const updateValues = () => {
-    const values = getValues();
+    const values = getValuesForProgressBar();
 
     const {
       year,
