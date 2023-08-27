@@ -4,7 +4,7 @@ import { twoDigitsAlways } from 'utils/twoDigitsAlways';
 
 import { getValues } from './utils';
 
-$(document).ready(() => {
+$(() => {
   const $parent = $('.js-progress-bar');
 
   const $year = $parent.find('.js-year');

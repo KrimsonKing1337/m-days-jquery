@@ -133,7 +133,7 @@ async function updateWeather() {
   $weatherIcon.css('display', 'inline-block');
 }
 
-$(document).ready(() => {
+$(() => {
   updateWeather();
 
   setInterval(() => {

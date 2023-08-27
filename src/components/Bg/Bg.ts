@@ -2,7 +2,7 @@ import './Bg.scss';
 
 import { getRandomImgPath } from './utils';
 
-$(document).ready(() => {
+$(() => {
   const $bg = $('.js-bg');
   const $bgNext = $('.js-bg-next');
   const $animWrapper = $('.js-anim-wrapper');
