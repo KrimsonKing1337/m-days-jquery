@@ -2,7 +2,7 @@
   <div class="Shadow">
     <%= require('components/Weather/Weather.ejs')() %>
 
-    <div class="ContentWrapper">
+    <div class="ContentWrapper js-content-wrapper with-percent">
       <div class="Left">
         <span class="Year js-year">
           2023
@@ -47,6 +47,26 @@
           31.1057890%
         </span>
       </div>
+    </div>
+
+    <div class="ContentWrapper js-content-wrapper no-percent">
+      <div class="Time">
+        <span class="HoursOrMinutes js-hours">
+          12:
+        </span>
+
+        <span class="HoursOrMinutes js-minutes">
+          46
+        </span>
+
+        <span class="Seconds js-seconds">
+          46
+        </span>
+      </div>
+
+      <span class="Month js-month">
+         24.04 Mon
+      </span>
     </div>
   </div>
 </div>

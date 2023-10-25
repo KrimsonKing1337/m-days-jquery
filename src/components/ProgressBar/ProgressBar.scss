@@ -38,6 +38,10 @@
   height: 200px;
   color: #fff;
   opacity: 0.65;
+
+  .no-percent {
+    display: none;
+  }
 }
 
 @mixin Block {
@@ -89,6 +93,10 @@
 
   @include SmallScreen {
     font-size: 24px;
+  }
+
+  .no-percent & {
+    background: none;
   }
 }
 

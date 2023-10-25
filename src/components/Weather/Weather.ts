@@ -77,7 +77,9 @@ async function updateWeather() {
   const temperatureIsNotSubZero = temperature > 0;
   const signNearTheTemperature = temperatureIsNotSubZero ? '+' : '-';
 
-  $weatherTemp.text(`${signNearTheTemperature}${temperature} °C`);
+  const temperaturePrepared = temperatureIsNotSubZero ? temperature : temperature.toString().substring(1);
+
+  $weatherTemp.text(`${signNearTheTemperature} ${temperaturePrepared} °C`);
 
   const iconSrc = getSrcOfWeatherIcon(weathercode, is_day);
 

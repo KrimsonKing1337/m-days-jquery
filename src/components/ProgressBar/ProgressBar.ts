@@ -15,6 +15,19 @@ $(() => {
   const $percent = $parent.find('.js-percent');
   const $percentFull = $parent.find('.js-percent-full');
 
+  const $contentWrapperWithPercent = $parent.find('.js-content-wrapper.with-percent');
+  const $contentWrapperNoPercent = $parent.find('.js-content-wrapper.no-percent');
+
+  const noPercentParam = new URLSearchParams(window.location.search).get('no-percent');
+  const noPercentValue = noPercentParam !== null;
+
+  if (noPercentValue) {
+    $parent.addClass('no-percent');
+
+    $contentWrapperWithPercent.hide();
+    $contentWrapperNoPercent.show();
+  }
+
   const updateValues = () => {
     const values = getValuesForProgressBar();
 
