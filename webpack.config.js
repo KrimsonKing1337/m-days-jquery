@@ -19,7 +19,9 @@ module.exports = (env = {}, argv) => {
   const processEnv = dotenv.parsed;
 
   const plugins = [
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name]_[contenthash].css',
+    }),
     new CleanWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin({
       typescript: {
