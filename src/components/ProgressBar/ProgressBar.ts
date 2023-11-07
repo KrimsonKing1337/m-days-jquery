@@ -1,3 +1,5 @@
+import 'url-search-params-polyfill';
+
 import './ProgressBar.scss';
 
 import { twoDigitsAlways, getValuesForProgressBar } from 'm-days-core/utils';

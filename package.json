@@ -24,11 +24,12 @@
   },
   "homepage": "https://github.com/KrimsonKing1337/m-days-jquery#readme",
   "dependencies": {
-    "m-days-core": "file:../m-days-core/tgz/m-days-core-0.0.12.tgz",
     "axios": "^0.21.2",
+    "m-days-core": "file:../m-days-core/tgz/m-days-core-0.0.12.tgz",
     "moment": "^2.29.4",
     "query-string": "^8.1.0",
     "reset-css": "^5.0.1",
+    "url-search-params-polyfill": "^8.2.5",
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
