@@ -23,6 +23,9 @@ $(() => {
   const noPercentParam = new URLSearchParams(window.location.search).get('no-percent');
   const noPercentValue = noPercentParam !== null;
 
+  const percentUpdateSpeed = new URLSearchParams(window.location.search).get('percent-update-speed') || '100';
+  const percentUpdateSpeedValue = JSON.parse(percentUpdateSpeed);
+
   if (noPercentValue) {
     $parent.addClass('no-percent');
 
@@ -68,5 +71,5 @@ $(() => {
 
   setInterval(() => {
     updateValues();
-  }, 100);
+  }, percentUpdateSpeedValue);
 });

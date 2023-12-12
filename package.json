@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode=development --host 0.0.0.0",
     "build": "npm run scan-imgs && webpack --mode=production",
-    "scan-imgs": "node ../m-days-core/scripts/scanImgs.js ../m-days-public",
+    "scan-imgs": "node ../m-days-core/scripts/scanImages/scanImages.js ../m-days-public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "browserslist": [
