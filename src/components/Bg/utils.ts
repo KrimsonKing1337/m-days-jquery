@@ -1,6 +1,7 @@
-import { getRandomImgPath as getRandomImgPathOriginal } from 'm-days-core/utils';
-import imgs from 'img_bg.json';
+import { getBg } from 'api';
 
-export function getRandomImgPath() {
-  return getRandomImgPathOriginal(imgs);
-}
+export const fetchImage = async () => {
+  const image = await getBg();
+
+  return URL.createObjectURL(image.data);
+};

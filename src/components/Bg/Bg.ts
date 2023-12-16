@@ -1,34 +1,22 @@
 import './Bg.scss';
 
-import { Themes } from '@types';
+import { fetchImage } from './utils';
 
-import { getRandomImgPath } from './utils';
-
-$(() => {
+$(async () => {
   const $bg = $('.js-bg');
   const $bgNext = $('.js-bg-next');
   const $animWrapper = $('.js-anim-wrapper');
 
-  const searchParams = new URLSearchParams(window.location.search);
-
-  // const topics = searchParams.get('topics');
-  // const imagesVariant = searchParams.get('imagesVariant');
-  // const preset = searchParams.get('preset');
-
-  const theme = searchParams.get('theme') as Themes;
-
-  console.log('___ theme', theme);
-
-  let bgNext = getRandomImgPath();
+  let bgNext = await fetchImage();
 
   const changeOpacity = (value: string) => {
     $animWrapper.css('opacity', value);
   }
 
-  const changeImage = () => {
+  const changeImage = async () => {
     $bg.css('background-image', `url(${bgNext})`);
 
-    bgNext = getRandomImgPath();
+    bgNext = await fetchImage();
 
     $bgNext.css('background-image', `url(${bgNext})`);
   }

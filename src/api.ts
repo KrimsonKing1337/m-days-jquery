@@ -27,7 +27,24 @@ export async function getCurrentWeather({ protocol, latitude, longitude }: getCu
   */
   const result: AxiosResponse<WeatherResp> = await axios.get(`${protocol}://api.open-meteo.com/v1/forecast`, { params });
 
-  console.log(result);
-
   return result.data;
+}
+
+export function getBg() {
+  const searchParams = new URLSearchParams(window.location.search);
+
+  const topics = searchParams.get('topics');
+  const imagesVariant = searchParams.get('imagesVariant');
+  const preset = searchParams.get('preset');
+
+  const reqParams = {
+    topics,
+    imagesVariant,
+    preset,
+  };
+
+  return axios.get('http://localhost:3000/bg', {
+    responseType: 'blob',
+    params: reqParams,
+  });
 }
