@@ -3,6 +3,7 @@ import 'reset-css/reset.css';
 import './styles.scss';
 
 import './vendors/jquery-1.9.1.min.js';
+import './vendors/bluebird.min.js';
 
 import './components/Bg/Bg';
 // todo: пересекаются css классы и css классы для js,
