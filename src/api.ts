@@ -43,7 +43,7 @@ export function getBg() {
     preset,
   };
 
-  return axios.get('http://localhost:3000/bg', {
+  return axios.get('/bg', {
     responseType: 'blob',
     params: reqParams,
   });
