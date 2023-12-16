@@ -8,7 +8,7 @@ import './vendors/bluebird.min.js';
 import './components/Bg/Bg';
 // todo: пересекаются css классы и css классы для js,
 //  из-за чего например progress-walking ломается в progress bar vaporwave
-// import './components/ProgressBar/ProgressBar';
+import './components/ProgressBar/ProgressBar';
 import './components/ProgressBarVaporwave/ProgressBarVaporwave';
 import './components/Weather/Weather';
 

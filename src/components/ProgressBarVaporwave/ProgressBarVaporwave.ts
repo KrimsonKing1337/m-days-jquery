@@ -1,10 +1,21 @@
 import './ProgressBarVaporwave.scss';
 
 import { twoDigitsAlways, getValuesForProgressBar } from 'm-days-core/utils';
+
+import { Themes } from '@types';
+
 import { getPercentForDay } from './utils';
 
 $(() => {
-  const $parent = $('.js-progress-bar');
+  const theme = new URLSearchParams(window.location.search).get('theme');
+
+  const $parent = $('.js-progress-bar-vaporwave');
+
+  if (theme !== Themes.vaporwave) {
+    $parent.remove();
+
+    return;
+  }
 
   const $date = $parent.find('.js-date');
   const $time = $parent.find('.js-time');

@@ -4,8 +4,18 @@ import './ProgressBar.scss';
 
 import { twoDigitsAlways, getValuesForProgressBar } from 'm-days-core/utils';
 
+import { Themes } from '@types';
+
 $(() => {
+  const theme = new URLSearchParams(window.location.search).get('theme');
+
   const $parent = $('.js-progress-bar');
+
+  if (theme && theme !== Themes.default) {
+    $parent.remove();
+
+    return;
+  }
 
   const $year = $parent.find('.js-year');
   const $month = $parent.find('.js-month');

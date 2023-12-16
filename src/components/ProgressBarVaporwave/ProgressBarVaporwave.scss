@@ -1,4 +1,4 @@
-.ProgressBar {
+.ProgressBar_Vaporwave {
   user-select: none;
 
   position: absolute;
@@ -12,7 +12,7 @@
   width: 100%;
 }
 
-.Shadow {
+.Shadow_Vaporwave {
   position: absolute;
   z-index: 2;
   top: 0;
@@ -25,40 +25,40 @@
   background: rgba(0, 0, 0, 0.4);
 }
 
-.ContentWrapper {
+.ContentWrapper_Vaporwave {
   position: absolute;
   z-index: 2;
-  top: 50px;
-  bottom: 0;
+  bottom: 80px;
   left: 0;
   right: 0;
   margin: auto;
   text-align: center;
   width: 100%;
+  max-width: 250px;
   height: 200px;
   color: #fff;
   opacity: 0.65;
 }
 
-.Progress {
-  width: 100%;
+.Progress_Vaporwave {
+  width: 80%;
   height: 8px;
   background: #3d3d3d;
   margin-top: 15px;
 }
 
-.ProgressWalking {
+.ProgressWalking_Vaporwave {
   height: 8px;
   background: #fff;
 }
 
-.Date {
+.Date_Vaporwave {
   font-family: 'Digital-Cyrillic';
   font-size: 24px;
   color: #fff;
 }
 
-.Time {
+.Time_Vaporwave {
   font-family: 'Digital-Cyrillic';
   font-size: 100px;
   color: #fff;
