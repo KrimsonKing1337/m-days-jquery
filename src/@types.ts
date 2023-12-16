@@ -17,3 +17,8 @@ export type WeatherResp = {
   timezone_abbreviation: string;
   utc_offset_seconds: number;
 }
+
+export enum Themes {
+  'default' = 'default',
+  'vaporwave' = 'vaporwave',
+}

@@ -25,7 +25,8 @@
   "homepage": "https://github.com/KrimsonKing1337/m-days-jquery#readme",
   "dependencies": {
     "axios": "^0.21.2",
-    "m-days-core": "file:../m-days-core/tgz/m-days-core-0.0.12.tgz",
+    "bluebird": "^3.7.2",
+    "m-days-core": "file:../m-days-core/tgz/m-days-core-0.0.15.tgz",
     "moment": "^2.29.4",
     "query-string": "^8.1.0",
     "reset-css": "^5.0.1",
@@ -39,6 +40,7 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
     "@svgr/webpack": "^6.5.1",
+    "@types/bluebird": "^3.5.42",
     "@types/jquery": "^3.5.16",
     "@types/whatwg-fetch": "^0.0.33",
     "autoprefixer": "^10.4.14",

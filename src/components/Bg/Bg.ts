@@ -1,11 +1,23 @@
 import './Bg.scss';
 
+import { Themes } from '@types';
+
 import { getRandomImgPath } from './utils';
 
 $(() => {
   const $bg = $('.js-bg');
   const $bgNext = $('.js-bg-next');
   const $animWrapper = $('.js-anim-wrapper');
+
+  const searchParams = new URLSearchParams(window.location.search);
+
+  // const topics = searchParams.get('topics');
+  // const imagesVariant = searchParams.get('imagesVariant');
+  // const preset = searchParams.get('preset');
+
+  const theme = searchParams.get('theme') as Themes;
+
+  console.log('___ theme', theme);
 
   let bgNext = getRandomImgPath();
 
