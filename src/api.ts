@@ -44,7 +44,7 @@ export function getBg() {
   };
 
   return axios.get('/bg', {
-    responseType: 'blob',
+    // responseType: 'blob',
     params: reqParams,
   });
 }
