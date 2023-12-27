@@ -35,3 +35,24 @@
   height: 125px;
   width: 125px;
 }
+
+.ProgressBarsWrapper {
+  // display: none;
+  display: block;
+}
+
+.ProgressBarsDull {
+  display: none;
+
+  color: #fff;
+  font-size: 500%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 100px;
+  width: 100%;
+  text-align: center;
+}

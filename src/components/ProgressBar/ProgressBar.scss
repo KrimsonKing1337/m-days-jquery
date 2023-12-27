@@ -120,6 +120,7 @@
 }
 
 .Time {
+  position: relative;
   display: block;
   text-align: center;
 }
@@ -144,6 +145,21 @@
 
   @include SmallScreen {
     font-size: 36px;
+  }
+}
+
+.WaterMark {
+  position: absolute;
+  z-index: 2;
+  bottom: 3px;
+  right: 7px;
+  display: block;
+
+  .no-percent & {
+    width: 70%;
+    left: 30%;
+    right: auto;
+    text-align: center;
   }
 }
 
@@ -183,4 +199,8 @@
   @include SmallScreen {
     font-size: 24px;
   }
+}
+
+.Date {
+  position: relative;
 }

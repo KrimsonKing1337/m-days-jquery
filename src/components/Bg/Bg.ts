@@ -6,6 +6,8 @@ $(async () => {
   const $bg = $('.js-bg');
   const $bgNext = $('.js-bg-next');
   const $animWrapper = $('.js-anim-wrapper');
+  const $progressBarsWrapper = $('.js-progress-bars-wrapper');
+  const $progressBarsDull = $('.js-progress-bars-dull');
 
   let bgNext = await fetchImage();
 
@@ -34,4 +36,7 @@ $(async () => {
       changeOpacity('1');
     }, 700);
   }, 12000);
+
+  $progressBarsDull.hide();
+  $progressBarsWrapper.show();
 });
