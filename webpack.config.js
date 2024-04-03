@@ -36,10 +36,16 @@ module.exports = (env = {}, argv) => {
       'isSbMode': JSON.stringify(sb),
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.ejs',
+      template: './src/pages/index.ejs',
       scriptLoading: 'blocking',
+      filename: 'index.html',
       isMobile: !!mobile,
       isProd,
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/pages/config.ejs',
+      scriptLoading: 'blocking',
+      filename: 'config.html',
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -169,7 +175,7 @@ module.exports = (env = {}, argv) => {
     });
   }
 
-  const buildDir = path.join(__dirname, (mobile ? 'cordova/www' : 'dist'));
+  const buildDir = path.join(__dirname, 'dist');
 
   return {
     entry: ['./src/index.ts'],
@@ -177,16 +183,18 @@ module.exports = (env = {}, argv) => {
     devtool: !isProd ? 'eval-source-map' : false,
     devServer: {
       static: buildDir,
-      port: 3001, // todo
+      port: 5000, // todo
       historyApiFallback: true,
-      hot: true,
-      liveReload: false,
       allowedHosts: 'all',
-      // https: true, // доступ к камере работает только через https
+      client: {
+        overlay: {
+          warnings: false,
+          errors: true
+        }
+      }
     },
     output: {
-      // пустой publicPath нужен для кордовы. она не может найти bundle.min.js, если его путь начинается с '/'
-      publicPath: mobile ? '' : './',
+      publicPath: '/',
       path: buildDir,
       filename: '[name]_[contenthash].js',
     },
