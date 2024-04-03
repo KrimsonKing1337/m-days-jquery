@@ -191,7 +191,14 @@ module.exports = (env = {}, argv) => {
           warnings: false,
           errors: true
         }
-      }
+      },
+      proxy: [
+        {
+          context: ['/api'],
+          target: 'http://localhost:3000',
+          // secure: false,
+        },
+      ],
     },
     output: {
       publicPath: '/',
