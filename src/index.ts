@@ -12,6 +12,8 @@ import './components/ProgressBar/ProgressBar';
 import './components/ProgressBarVaporwave/ProgressBarVaporwave';
 import './components/Weather/Weather';
 
+import './components/CreateNewPreset/CreateNewPreset';
+
 function hideAddressBar() {
   window.scroll(0, 1);
 }

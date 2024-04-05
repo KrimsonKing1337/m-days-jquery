@@ -48,3 +48,7 @@ export function getBg() {
     params: reqParams,
   });
 }
+
+export function getContentOptions() {
+  return axios.get('/content-options');
+}
