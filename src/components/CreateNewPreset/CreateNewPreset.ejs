@@ -1,3 +1,30 @@
 <div class="CreateNewPreset js-create-new-preset">
-  Here will be the "create new preset" component
+  <div class="CreateNewPresetWrapper">
+    <div class="InputWrapper">
+      <label for="input">
+        Type a name for new preset
+      </label>
+
+      <input id="input" class="js-input" required />
+    </div>
+
+    <div class="SelectWrapper">
+      <label for="select">
+        Choose options for new preset
+      </label>
+
+      <select id="select" name="select" class="js-select">
+        <option value=""></option>
+        <!-- options here are coming from js -->
+      </select>
+    </div>
+
+    <div class="CheckboxesWrapper js-checkboxes-wrapper">
+      <!-- checkboxes here are coming from js -->
+    </div>
+
+    <button class="CreateNewPreset__Button js-button">
+      Submit
+    </button>
+  </div>
 </div>

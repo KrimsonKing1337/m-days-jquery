@@ -186,10 +186,11 @@ module.exports = (env = {}, argv) => {
       port: 5000, // todo
       historyApiFallback: true,
       allowedHosts: 'all',
+      liveReload: true,
       client: {
         overlay: {
           warnings: false,
-          errors: true
+          errors: false,
         }
       },
       proxy: [

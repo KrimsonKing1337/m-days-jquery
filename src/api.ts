@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { WeatherResp } from './@types';
+import { Preset, WeatherResp } from './@types';
 
 export type getCurrentWeatherParams = {
   latitude: number;
@@ -51,4 +51,16 @@ export function getBg() {
 
 export function getContentOptions() {
   return axios.get('/content-options');
+}
+
+export function putNewPreset(newPreset: Preset) {
+  const params = new URLSearchParams();
+
+  Object.keys(newPreset).forEach((key) => {
+    const value = newPreset[key];
+
+    params.append(key, value);
+  });
+
+  return axios.put('/api', params);
 }

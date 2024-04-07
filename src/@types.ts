@@ -22,3 +22,10 @@ export enum Themes {
   'default' = 'default',
   'vaporwave' = 'vaporwave',
 }
+
+export type Preset = {
+  [key: string]: string;
+
+  id: string;
+  staticTopics: string;
+};
