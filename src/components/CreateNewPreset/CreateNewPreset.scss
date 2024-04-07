@@ -26,8 +26,19 @@
   margin-top: 20px;
 }
 
-.CheckboxesWrapper {
+.ContentOptionsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin-top: 15px;
+  gap: 15px;
+}
+
+.CheckboxesWrapperLabel {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .CreateNewPresetWrapper {

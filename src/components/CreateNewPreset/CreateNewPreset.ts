@@ -1,24 +1,26 @@
+import type { Preset } from '@types';
+
 import './CreateNewPreset.scss';
 
 import { fetchContentOptions } from './utils';
-import { putNewPreset } from '../../api';
-import { Preset } from '../../@types';
+import { putNewPreset } from 'api';
+import { AxiosError } from 'axios';
+
 
 $(async () => {
   const contentOptions = await fetchContentOptions();
 
   const $input = $('#input') as JQuery<HTMLInputElement>;
-  const $select = $('#select') as JQuery<HTMLSelectElement>;
-  const $checkboxesWrapper = $('.js-checkboxes-wrapper') as JQuery<HTMLDivElement>;
+  const $contentOptionsWrapper = $('.js-content-options-wrapper') as JQuery<HTMLDivElement>;
   const $button = $('.js-button') as JQuery<HTMLButtonElement>;
 
   $button.on('click', async () => {
     const chosenOptionsElements = $('[name="chosen-ones"]:checked').get();
 
-    const result: string[] = [];
+    const optionsArray: string[] = [];
 
     chosenOptionsElements.forEach(checkboxCur => {
-      result.push(checkboxCur.id);
+      optionsArray.push(checkboxCur.id);
     });
 
     if (!$input.val()) {
@@ -27,13 +29,13 @@ $(async () => {
       return;
     }
 
-    if (result.length === 0) {
+    if (optionsArray.length === 0) {
       alert('There are no chosen options!');
 
       return;
     }
 
-    const topics = result.join(', ');
+    const topics = optionsArray.join(', ');
     const name = $input.val() as string;
 
     const newPreset: Preset = {
@@ -41,31 +43,31 @@ $(async () => {
       staticTopics: topics,
     };
 
-    await putNewPreset(newPreset);
+    try {
+      await putNewPreset(newPreset);
+    } catch (error) {
+      const err = error as AxiosError;
 
-    // todo: если уже есть пресет с таким названием - обрабатывать ошибку
+      alert(err.response?.data);
+    }
     // todo: то же самое сделать и для dynamicTopics, skins и так далее
   });
 
   Object.keys(contentOptions).forEach((key) => {
-    const $newOption = $('<option>', { label: key, value: key });
+    const options = contentOptions[key] as string[];
 
-    $select.append($newOption);
-  });
+    const $newCheckboxesWrapper = $(`<div class="CheckboxesWrapper"></div>`);
+    const $newCheckboxesWrapperLabel = $(`<div class="CheckboxesWrapperLabel">${key}</div>`);
 
-  $select.on('change', (e) => {
-    const { value } = e.target;
-
-    const options = contentOptions[value] as string[];
-
-    $checkboxesWrapper.empty();
+    $newCheckboxesWrapper.append($newCheckboxesWrapperLabel);
+    $contentOptionsWrapper.append($newCheckboxesWrapper);
 
     options.forEach((optionCur) => {
-      const $newCheckboxWrapper = $('<div>', { 'class': 'NewCheckboxWrapper' });
+      const $newCheckboxWrapper = $('<div>');
       const $newLabel = $(`<label for="${optionCur}">${optionCur}</label>`);
       const $newCheckbox = $('<input />', { type: 'checkbox', 'id': optionCur, name: 'chosen-ones' });
 
-      $checkboxesWrapper.append($newCheckboxWrapper);
+      $newCheckboxesWrapper.append($newCheckboxWrapper);
 
       $newCheckboxWrapper.append($newLabel);
       $newCheckboxWrapper.append($newCheckbox);
