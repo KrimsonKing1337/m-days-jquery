@@ -44,6 +44,7 @@ $(async () => {
     await putNewPreset(newPreset);
 
     // todo: если уже есть пресет с таким названием - обрабатывать ошибку
+    // todo: то же самое сделать и для dynamicTopics, skins и так далее
   });
 
   Object.keys(contentOptions).forEach((key) => {
