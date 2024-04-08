@@ -10,9 +10,13 @@ import { AxiosError } from 'axios';
 $(async () => {
   const contentOptions = await fetchContentOptions();
 
-  const $input = $('#input') as JQuery<HTMLInputElement>;
-  const $contentOptionsWrapper = $('.js-content-options-wrapper') as JQuery<HTMLDivElement>;
+  const $presetNameInput = $('#input') as JQuery<HTMLInputElement>;
+  const $resolutionWInput = $('#input-w') as JQuery<HTMLInputElement>;
+  const $resolutionHInput = $('#input-h') as JQuery<HTMLInputElement>;
 
+  const $skinSelect = $('#skin-select') as JQuery<HTMLSelectElement>;
+
+  const $contentOptionsWrapper = $('.js-content-options-wrapper') as JQuery<HTMLDivElement>;
   const $contentStaticOptionsWrapper = $('.js-content-static-options-wrapper') as JQuery<HTMLDivElement>;
   const $contentDynamicOptionsWrapper = $('.js-content-dynamic-options-wrapper') as JQuery<HTMLDivElement>;
 
@@ -41,7 +45,7 @@ $(async () => {
       dynamicOptionsArray.push(omitId);
     });
 
-    if (!$input.val()) {
+    if (!$presetNameInput.val()) {
       alert('The name cannot be empty!');
 
       return;
@@ -56,12 +60,27 @@ $(async () => {
     const staticTopics = staticOptionsArray.join(', ');
     const dynamicTopics = dynamicOptionsArray.join(', ');
 
-    const name = $input.val() as string;
+    const name = $presetNameInput.val() as string;
+
+    let resolution = '';
+
+    if ($resolutionWInput.val() && $resolutionHInput.val()) {
+      resolution += `w: ${$resolutionWInput.val()}, `;
+      resolution += `h: ${$resolutionHInput.val()}`;
+    }
+
+    let skin = 'default';
+
+    if ($skinSelect.val()) {
+      skin = $skinSelect.val() as string;
+    }
 
     const newPreset: Preset = {
       id: name,
       staticTopics,
       dynamicTopics,
+      resolution,
+      skin,
     };
 
     try {
@@ -71,7 +90,6 @@ $(async () => {
 
       alert(err.response?.data);
     }
-    // todo: то же самое сделать для skins и resolution
   });
 
   Object.keys(contentOptions).forEach((key) => {
