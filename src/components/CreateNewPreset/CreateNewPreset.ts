@@ -1,11 +1,12 @@
+import type { AxiosError } from 'axios';
+
 import type { Preset } from '@types';
+
+import { putNewPreset } from 'api';
 
 import './CreateNewPreset.scss';
 
 import { fetchContentOptions } from './utils';
-import { putNewPreset } from 'api';
-import { AxiosError } from 'axios';
-
 
 $(async () => {
   const contentOptions = await fetchContentOptions();
@@ -34,15 +35,25 @@ $(async () => {
     const dynamicOptionsArray: string[] = [];
 
     chosenOptionsStaticElements.forEach(checkboxCur => {
-      const omitId = checkboxCur.id.substring(7); // static-
+      const $checkboxCur = $(checkboxCur);
 
-      staticOptionsArray.push(omitId);
+      const key = $checkboxCur.data('key');
+      const id = $checkboxCur.attr('id');
+
+      const value = `${key}/${id}`;
+
+      staticOptionsArray.push(value);
     });
 
     chosenOptionsDynamicElements.forEach(checkboxCur => {
-      const omitId = checkboxCur.id.substring(8); // dynamic-
+      const $checkboxCur = $(checkboxCur);
 
-      dynamicOptionsArray.push(omitId);
+      const key = $checkboxCur.data('key');
+      const id = $checkboxCur.attr('id');
+
+      const value = `${key}/${id}`;
+
+      dynamicOptionsArray.push(value);
     });
 
     if (!$presetNameInput.val()) {
@@ -85,6 +96,8 @@ $(async () => {
 
     try {
       await putNewPreset(newPreset);
+
+      // todo: реализовать удаление пресета - axios.delete, на бэке обрабатывать запрос
     } catch (error) {
       const err = error as AxiosError;
 
@@ -110,6 +123,8 @@ $(async () => {
         type: 'checkbox',
         'id': `static-${optionCur}`,
         name: 'static-chosen-ones',
+        'data-key': key,
+        'data-type': 'static',
       });
 
       $newCheckboxesWrapper.append($newCheckboxWrapper);
@@ -137,6 +152,8 @@ $(async () => {
         type: 'checkbox',
         'id': `dynamic-${optionCur}`,
         name: 'dynamic-chosen-ones',
+        'data-key': key,
+        'data-type': 'dynamic',
       });
 
       $newCheckboxesWrapper.append($newCheckboxWrapper);
