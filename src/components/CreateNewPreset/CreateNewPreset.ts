@@ -2,7 +2,7 @@ import type { AxiosError } from 'axios';
 
 import type { Preset } from '@types';
 
-import { putNewPreset } from 'api';
+import { deletePreset, putNewPreset } from 'api';
 
 import './CreateNewPreset.scss';
 
@@ -11,6 +11,7 @@ import { fetchContentOptions } from './utils';
 $(async () => {
   const contentOptions = await fetchContentOptions();
 
+  const $presetNameDeleteInput = $('#input-delete') as JQuery<HTMLInputElement>;
   const $presetNameInput = $('#input') as JQuery<HTMLInputElement>;
   const $resolutionWInput = $('#input-w') as JQuery<HTMLInputElement>;
   const $resolutionHInput = $('#input-h') as JQuery<HTMLInputElement>;
@@ -21,13 +22,24 @@ $(async () => {
   const $contentStaticOptionsWrapper = $('.js-content-static-options-wrapper') as JQuery<HTMLDivElement>;
   const $contentDynamicOptionsWrapper = $('.js-content-dynamic-options-wrapper') as JQuery<HTMLDivElement>;
 
-  const $button = $('.js-button') as JQuery<HTMLButtonElement>;
+  const $deleteButton = $('.js-delete-button') as JQuery<HTMLButtonElement>;
+  const $submitButton = $('.js-submit-button') as JQuery<HTMLButtonElement>;
 
   $contentOptionsWrapper.on('click', (e) => {
     $(e.currentTarget).toggleClass('isActive');
   });
 
-  $button.on('click', async () => {
+  $deleteButton.on('click', async () => {
+    if (!$presetNameDeleteInput.val()) {
+      alert('There is no name for delete a preset!');
+
+      return;
+    }
+
+    await deletePreset($presetNameDeleteInput.val() as string);
+  });
+
+  $submitButton.on('click', async () => {
     const chosenOptionsStaticElements = $('[name="static-chosen-ones"]:checked').get();
     const chosenOptionsDynamicElements = $('[name="dynamic-chosen-ones"]:checked').get();
 

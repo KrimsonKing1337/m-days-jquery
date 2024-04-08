@@ -64,3 +64,9 @@ export function putNewPreset(newPreset: Preset) {
 
   return axios.put('/api', params);
 }
+
+export function deletePreset(id: string) {
+  return axios.delete('/api', {
+    data: { id },
+  });
+}
