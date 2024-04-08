@@ -28,4 +28,5 @@ export type Preset = {
 
   id: string;
   staticTopics: string;
+  dynamicTopics: string;
 };
