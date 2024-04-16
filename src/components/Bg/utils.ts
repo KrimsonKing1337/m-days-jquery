@@ -12,11 +12,11 @@ export const fetchImage = async () => {
 };
 
 export const getRandomStaticImage = () => {
-  const topics = 'anime/attack-on-titan, anime/ghost-in-the-shell, anime/hayao-miyazaki/tonari-no-totoro, anime/makoto-shinkai/byousoku-5-centimeter, anime/hellsing-ultimate, anime/fullmetal-alchemist, anime/fullmetal-alchemist-brotherhood, series/doctor-who, series/star-trek, series/too-old-to-die-young, series/the-10th-kingdom, cartoons/avatar-the-last-airbender, cartoons/the-legend-of-korra';
+  const staticTopics = 'anime/attack-on-titan, anime/ghost-in-the-shell, anime/hayao-miyazaki/tonari-no-totoro, anime/makoto-shinkai/byousoku-5-centimeter, anime/hellsing-ultimate, anime/fullmetal-alchemist, anime/fullmetal-alchemist-brotherhood, series/doctor-who, series/star-trek, series/too-old-to-die-young, series/the-10th-kingdom, cartoons/avatar-the-last-airbender, cartoons/the-legend-of-korra';
 
   const width = '1920, 1600, 1280';
 
-  const topicsAsArr = topics.split(', ');
+  const topicsAsArr = staticTopics.split(', ');
   const widthAsArr = width.split(', ');
 
   const randomTopicIndex = getRandomInt(0, topicsAsArr.length - 1);
