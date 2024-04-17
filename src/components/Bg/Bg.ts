@@ -1,6 +1,8 @@
 import './Bg.scss';
 
-import { getRandomStaticImage } from './utils';
+import { getRandomImage } from './utils';
+import { getInfoAboutPreset } from '../../api';
+
 
 $(async () => {
   const $bg = $('.js-bg');
@@ -9,7 +11,9 @@ $(async () => {
   const $progressBarsWrapper = $('.js-progress-bars-wrapper');
   const $progressBarsDull = $('.js-progress-bars-dull');
 
-  let bgNext = getRandomStaticImage();
+  const presetInfo = await getInfoAboutPreset('viktor_vera');
+
+  let bgNext = getRandomImage(presetInfo);
 
   const changeOpacity = (value: string) => {
     $animWrapper.css('opacity', value);
@@ -18,7 +22,7 @@ $(async () => {
   const changeImage = () => {
     $bg.css('background-image', `url(${bgNext})`);
 
-    bgNext = getRandomStaticImage();
+    bgNext = getRandomImage(presetInfo);
 
     $bgNext.css('background-image', `url(${bgNext})`);
   }

@@ -70,3 +70,9 @@ export function deletePreset(id: string) {
     data: { id },
   });
 }
+
+export function getInfoAboutPreset(id: string) {
+  return axios.get('/api', {
+    params: { id },
+  });
+}

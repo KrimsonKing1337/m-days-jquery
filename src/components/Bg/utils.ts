@@ -11,13 +11,14 @@ export const fetchImage = async () => {
   return JSON.stringify(image.data);
 };
 
-export const getRandomStaticImage = () => {
-  const staticTopics = 'anime/attack-on-titan, anime/ghost-in-the-shell, anime/hayao-miyazaki/tonari-no-totoro, anime/makoto-shinkai/byousoku-5-centimeter, anime/hellsing-ultimate, anime/fullmetal-alchemist, anime/fullmetal-alchemist-brotherhood, series/doctor-who, series/star-trek, series/too-old-to-die-young, series/the-10th-kingdom, cartoons/avatar-the-last-airbender, cartoons/the-legend-of-korra';
-
-  const width = '1920, 1600, 1280';
-
-  const dynamicTopics = 'anime/common, cartoons/american-dad, series/friends, cartoons/rick-and-morty, meme';
-  const gifFormat = 'sq, h';
+export const getRandomImage = (presetInfo: any) => {
+  // resolution, skin,
+  const {
+    staticTopics,
+    dynamicTopics,
+    width,
+    gifFormat,
+  } = presetInfo.data;
 
   const staticTopicsAsArr = staticTopics.split(', ');
   const widthAsArr = width.split(', ');
