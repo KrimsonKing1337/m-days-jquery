@@ -15,7 +15,7 @@ $(async () => {
     $animWrapper.css('opacity', value);
   }
 
-  const changeImage = async () => {
+  const changeImage = () => {
     $bg.css('background-image', `url(${bgNext})`);
 
     bgNext = getRandomStaticImage();

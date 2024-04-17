@@ -16,22 +16,59 @@ export const getRandomStaticImage = () => {
 
   const width = '1920, 1600, 1280';
 
-  const topicsAsArr = staticTopics.split(', ');
+  const dynamicTopics = 'anime/common, cartoons/american-dad, series/friends, cartoons/rick-and-morty, meme';
+  const gifFormat = 'sq, h';
+
+  const staticTopicsAsArr = staticTopics.split(', ');
   const widthAsArr = width.split(', ');
 
-  const randomTopicIndex = getRandomInt(0, topicsAsArr.length - 1);
-  const randomWidthIndex = getRandomInt(0, widthAsArr.length - 1);
+  const dynamicTopicsAsArr = dynamicTopics.split(', ');
+  const gifFormatAsArr = gifFormat.split(', ');
 
-  const randomTopic = topicsAsArr[randomTopicIndex];
+  const randomStaticTopicIndex = getRandomInt(0, staticTopicsAsArr.length - 1);
+  const randomDynamicTopicIndex = getRandomInt(0, dynamicTopicsAsArr.length - 1);
+
+  const randomWidthIndex = getRandomInt(0, widthAsArr.length - 1);
+  const randomGifFormatIndex = getRandomInt(0, gifFormatAsArr.length - 1);
+
+  const randomStaticTopic = staticTopicsAsArr[randomStaticTopicIndex];
   const randomWidth = widthAsArr[randomWidthIndex];
 
-  const imgPath = `static/${randomTopic}/${randomWidth}`;
-  const imgPathWithoutSlashes = imgPath.replace(/\//g, '.');
+  const randomDynamicTopic = dynamicTopicsAsArr[randomDynamicTopicIndex];
+  const randomGifFormat = gifFormatAsArr[randomGifFormatIndex];
 
-  const randomStaticImagesInOneWidth = get(imgBgJson, imgPathWithoutSlashes);
+  const staticImgPath = `static/${randomStaticTopic}/${randomWidth}`;
+  const staticImgPathWithoutSlashes = staticImgPath.replace(/\//g, '.');
+
+  let dynamicImgPath = `dynamic/${randomDynamicTopic}/${randomGifFormat}`;
+  let dynamicImgPathWithoutSlashes = dynamicImgPath.replace(/\//g, '.');
+
+  const randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
+  const randomDynamicImagesInOneFormat = get(imgBgJson, dynamicImgPathWithoutSlashes);
+
+  const randomDynamicImagesInOneSizeKeys = Object.keys(randomDynamicImagesInOneFormat);
+  const randomDynamicImagesInOneSizeIndex = getRandomInt(0, randomDynamicImagesInOneSizeKeys.length - 1);
+  const randomDynamicImagesSize = randomDynamicImagesInOneSizeKeys[randomDynamicImagesInOneSizeIndex];
+
+  dynamicImgPath = `dynamic/${randomDynamicTopic}/${randomGifFormat}/${randomDynamicImagesSize}`;
+  dynamicImgPathWithoutSlashes = dynamicImgPath.replace(/\//g, '.');
+
+  const randomDynamicImagesInOneSize = get(imgBgJson, dynamicImgPathWithoutSlashes);
 
   const randomStaticImagesValues = Object.values(randomStaticImagesInOneWidth);
   const randomStaticImagesValuesIndex = getRandomInt(0, randomStaticImagesValues.length - 1);
 
-  return randomStaticImagesValues[randomStaticImagesValuesIndex];
+  const randomDynamicImagesValues = Object.values(randomDynamicImagesInOneSize);
+  const randomDynamicImagesValuesIndex = getRandomInt(0, randomDynamicImagesValues.length - 1);
+
+  const randomStaticImage = randomStaticImagesValues[randomStaticImagesValuesIndex];
+  const randomDynamicImage = randomDynamicImagesValues[randomDynamicImagesValuesIndex];
+
+  const randomInt = getRandomInt(0, 1);
+
+  if (randomInt === 0) {
+    return randomDynamicImage;
+  }
+
+  return randomStaticImage;
 }
