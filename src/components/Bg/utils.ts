@@ -13,7 +13,6 @@ export const fetchImage = async () => {
 };
 
 export const getRandomImage = (presetInfo: Preset) => {
-  // resolution, skin,
   const {
     staticTopics,
     dynamicTopics,

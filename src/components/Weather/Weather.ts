@@ -35,7 +35,7 @@ function catchError(error: AxiosError) {
 
 let skin = 'default';
 
-export function setTheme(theme: string) {
+export function setSkin(theme: string) {
   const $weather = $('.js-weather');
   const $weatherTemp = $weather.find('.js-weather-temp');
 
@@ -107,7 +107,7 @@ async function updateWeather() {
 }
 
 $(() => {
-  setTheme('default');
+  setSkin('default');
 
   updateWeather();
 

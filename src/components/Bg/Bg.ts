@@ -2,7 +2,7 @@ import './Bg.scss';
 
 import { getRandomImage } from './utils';
 import { getInfoAboutPreset } from 'api';
-import { setTheme } from '../Weather/Weather';
+import { setSkin } from '../Weather/Weather';
 
 $(async () => {
   const $bg = $('.js-bg');
@@ -15,7 +15,7 @@ $(async () => {
   const $progressBarCuberpunk = $('.js-progress-bar-vaporwave');
 
   const searchParams = new URLSearchParams(window.location.search);
-  const preset = searchParams.get('preset') || 'default'; // todo: добавить в бд информацию о дефолтном пресете
+  const preset = searchParams.get('preset') || 'default';
 
   const presetInfo = await getInfoAboutPreset(preset);
 
@@ -49,7 +49,7 @@ $(async () => {
 
   if (presetInfo.skin === 'cyberpunk') {
     $progressBar.remove();
-    setTheme('cyberpunk');
+    setSkin('cyberpunk');
   } else {
     $progressBarCuberpunk.remove();
   }
