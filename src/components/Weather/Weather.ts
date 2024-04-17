@@ -7,8 +7,6 @@ import type { WeatherResp } from 'm-days-core/@types';
 
 import { getSrcOfWeatherIcon } from 'm-days-core/utils';
 
-import { Themes } from '@types';
-
 import { getCurrentPosition } from 'utils/gpsApi';
 import { getCurrentWeather } from 'api';
 import { printObject } from 'utils/printObject';
@@ -35,15 +33,15 @@ function catchError(error: AxiosError) {
   printObject(error.config);
 }
 
-const theme = new URLSearchParams(window.location.search).get('theme');
+let skin = 'default';
 
-function setTheme() {
+export function setTheme(theme: string) {
   const $weather = $('.js-weather');
   const $weatherTemp = $weather.find('.js-weather-temp');
 
-  if (theme === Themes.vaporwave) {
-    $weatherTemp.addClass('themeVaporwave');
-  }
+  skin = theme;
+
+  $weatherTemp.addClass(`theme-${theme}`);
 }
 
 async function updateWeather() {
@@ -96,7 +94,7 @@ async function updateWeather() {
 
   let value = `${signNearTheTemperature} ${temperaturePrepared} °C`;
 
-  if (theme === Themes.vaporwave) {
+  if (skin === 'cyberpunk') {
     value = `${signNearTheTemperature}${temperaturePrepared}°C`; // without spaces
   }
 
@@ -109,7 +107,7 @@ async function updateWeather() {
 }
 
 $(() => {
-  setTheme();
+  setTheme('default');
 
   updateWeather();
 

@@ -2,7 +2,7 @@ import './Bg.scss';
 
 import { getRandomImage } from './utils';
 import { getInfoAboutPreset } from 'api';
-
+import { setTheme } from '../Weather/Weather';
 
 $(async () => {
   const $bg = $('.js-bg');
@@ -10,6 +10,9 @@ $(async () => {
   const $animWrapper = $('.js-anim-wrapper');
   const $progressBarsWrapper = $('.js-progress-bars-wrapper');
   const $progressBarsDull = $('.js-progress-bars-dull');
+
+  const $progressBar = $('.js-progress-bar');
+  const $progressBarCuberpunk = $('.js-progress-bar-vaporwave');
 
   const searchParams = new URLSearchParams(window.location.search);
   const preset = searchParams.get('preset') || 'default'; // todo: добавить в бд информацию о дефолтном пресете
@@ -43,6 +46,13 @@ $(async () => {
       changeOpacity('1');
     }, 700);
   }, 12000);
+
+  if (presetInfo.skin === 'cyberpunk') {
+    $progressBar.remove();
+    setTheme('cyberpunk');
+  } else {
+    $progressBarCuberpunk.remove();
+  }
 
   $progressBarsDull.hide();
   $progressBarsWrapper.show();
