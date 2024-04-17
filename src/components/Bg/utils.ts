@@ -4,6 +4,7 @@ import { getBg } from 'api';
 import { getRandomInt } from 'utils/getRandomInt';
 
 import imgBgJson from 'img_bg.json';
+import { Preset } from '../../@types';
 
 export const fetchImage = async () => {
   const image = await getBg();
@@ -11,14 +12,14 @@ export const fetchImage = async () => {
   return JSON.stringify(image.data);
 };
 
-export const getRandomImage = (presetInfo: any) => {
+export const getRandomImage = (presetInfo: Preset) => {
   // resolution, skin,
   const {
     staticTopics,
     dynamicTopics,
     width,
     gifFormat,
-  } = presetInfo.data;
+  } = presetInfo;
 
   const staticTopicsAsArr = staticTopics.split(', ');
   const widthAsArr = width.split(', ');
@@ -55,6 +56,10 @@ export const getRandomImage = (presetInfo: any) => {
   dynamicImgPathWithoutSlashes = dynamicImgPath.replace(/\//g, '.');
 
   const randomDynamicImagesInOneSize = get(imgBgJson, dynamicImgPathWithoutSlashes);
+
+  if (!randomDynamicImagesInOneSize) {
+    console.log('___ dynamicImgPathWithoutSlashes', dynamicImgPathWithoutSlashes);
+  }
 
   const randomStaticImagesValues = Object.values(randomStaticImagesInOneWidth);
   const randomStaticImagesValuesIndex = getRandomInt(0, randomStaticImagesValues.length - 1);

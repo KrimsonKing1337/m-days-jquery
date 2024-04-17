@@ -31,4 +31,6 @@ export type Preset = {
   dynamicTopics: string;
   resolution: string;
   skin: string;
+  width: string;
+  gifFormat: string;
 };

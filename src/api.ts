@@ -71,8 +71,10 @@ export function deletePreset(id: string) {
   });
 }
 
-export function getInfoAboutPreset(id: string) {
-  return axios.get('/api', {
+export async function getInfoAboutPreset(id: string): Promise<Preset> {
+  const result = await axios.get('/api', {
     params: { id },
   });
+
+  return result.data;
 }

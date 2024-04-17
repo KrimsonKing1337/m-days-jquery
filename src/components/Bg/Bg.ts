@@ -1,7 +1,7 @@
 import './Bg.scss';
 
 import { getRandomImage } from './utils';
-import { getInfoAboutPreset } from '../../api';
+import { getInfoAboutPreset } from 'api';
 
 
 $(async () => {
@@ -11,7 +11,10 @@ $(async () => {
   const $progressBarsWrapper = $('.js-progress-bars-wrapper');
   const $progressBarsDull = $('.js-progress-bars-dull');
 
-  const presetInfo = await getInfoAboutPreset('viktor_vera');
+  const searchParams = new URLSearchParams(window.location.search);
+  const preset = searchParams.get('preset') || 'default'; // todo: добавить в бд информацию о дефолтном пресете
+
+  const presetInfo = await getInfoAboutPreset(preset);
 
   let bgNext = getRandomImage(presetInfo);
 
