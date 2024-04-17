@@ -104,6 +104,9 @@ $(async () => {
       dynamicTopics,
       resolution,
       skin,
+      width: '',
+      gifFormat: '',
+      // todo: добавить ширину и формат гифок на страницу создания
     };
 
     try {

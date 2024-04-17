@@ -39,13 +39,28 @@ export const getRandomImage = (presetInfo: Preset) => {
   const randomDynamicTopic = dynamicTopicsAsArr[randomDynamicTopicIndex];
   const randomGifFormat = gifFormatAsArr[randomGifFormatIndex];
 
-  const staticImgPath = `static/${randomStaticTopic}/${randomWidth}`;
-  const staticImgPathWithoutSlashes = staticImgPath.replace(/\//g, '.');
+  let staticImgPath = `static/${randomStaticTopic}/${randomWidth}`;
+  let staticImgPathWithoutSlashes = staticImgPath.replace(/\//g, '.');
 
   let dynamicImgPath = `dynamic/${randomDynamicTopic}/${randomGifFormat}`;
   let dynamicImgPathWithoutSlashes = dynamicImgPath.replace(/\//g, '.');
 
-  const randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
+  let randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
+
+  if (!randomStaticImagesInOneWidth) {
+    staticImgPath = `static/${randomStaticTopic}`;
+    staticImgPathWithoutSlashes = staticImgPath.replace(/\//g, '.');
+    randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
+
+    const randomStaticImagesInOneWidthKeys = Object.keys(randomStaticImagesInOneWidth);
+    const randomStaticImagesWidth = randomStaticImagesInOneWidthKeys[randomStaticImagesInOneWidthKeys.length - 1];
+
+    staticImgPath = `static/${randomStaticTopic}/${randomStaticImagesWidth}`;
+    staticImgPathWithoutSlashes = staticImgPath.replace(/\//g, '.');
+
+    randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
+  }
+
   const randomDynamicImagesInOneFormat = get(imgBgJson, dynamicImgPathWithoutSlashes);
 
   const randomDynamicImagesInOneSizeKeys = Object.keys(randomDynamicImagesInOneFormat);
@@ -56,10 +71,6 @@ export const getRandomImage = (presetInfo: Preset) => {
   dynamicImgPathWithoutSlashes = dynamicImgPath.replace(/\//g, '.');
 
   const randomDynamicImagesInOneSize = get(imgBgJson, dynamicImgPathWithoutSlashes);
-
-  if (!randomDynamicImagesInOneSize) {
-    console.log('___ dynamicImgPathWithoutSlashes', dynamicImgPathWithoutSlashes);
-  }
 
   const randomStaticImagesValues = Object.values(randomStaticImagesInOneWidth);
   const randomStaticImagesValuesIndex = getRandomInt(0, randomStaticImagesValues.length - 1);
