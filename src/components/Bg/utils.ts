@@ -22,6 +22,7 @@ export const getRandomImage = (presetInfo: Preset) => {
   } = presetInfo;
 
   const staticTopicsAsArr = staticTopics.split(', ');
+
   const widthAsArr = width.split(', ');
 
   const dynamicTopicsAsArr = dynamicTopics.split(', ');
@@ -40,6 +41,7 @@ export const getRandomImage = (presetInfo: Preset) => {
   const randomGifFormat = gifFormatAsArr[randomGifFormatIndex];
 
   let staticImgPath = `static/${randomStaticTopic}/${randomWidth}`;
+
   let staticImgPathWithoutSlashes = staticImgPath.replace(/\//g, '.');
 
   let dynamicImgPath = `dynamic/${randomDynamicTopic}/${randomGifFormat}`;
@@ -61,7 +63,7 @@ export const getRandomImage = (presetInfo: Preset) => {
     randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
   }
 
-  const randomDynamicImagesInOneFormat = get(imgBgJson, dynamicImgPathWithoutSlashes);
+  const randomDynamicImagesInOneFormat = get(imgBgJson, dynamicImgPathWithoutSlashes) || {};
 
   const randomDynamicImagesInOneSizeKeys = Object.keys(randomDynamicImagesInOneFormat);
   const randomDynamicImagesInOneSizeIndex = getRandomInt(0, randomDynamicImagesInOneSizeKeys.length - 1);
@@ -70,7 +72,7 @@ export const getRandomImage = (presetInfo: Preset) => {
   dynamicImgPath = `dynamic/${randomDynamicTopic}/${randomGifFormat}/${randomDynamicImagesSize}`;
   dynamicImgPathWithoutSlashes = dynamicImgPath.replace(/\//g, '.');
 
-  const randomDynamicImagesInOneSize = get(imgBgJson, dynamicImgPathWithoutSlashes);
+  const randomDynamicImagesInOneSize = get(imgBgJson, dynamicImgPathWithoutSlashes) || {};
 
   const randomStaticImagesValues = Object.values(randomStaticImagesInOneWidth);
   const randomStaticImagesValuesIndex = getRandomInt(0, randomStaticImagesValues.length - 1);
@@ -81,9 +83,17 @@ export const getRandomImage = (presetInfo: Preset) => {
   const randomStaticImage = randomStaticImagesValues[randomStaticImagesValuesIndex];
   const randomDynamicImage = randomDynamicImagesValues[randomDynamicImagesValuesIndex];
 
-  const randomInt = getRandomInt(0, 1);
+  if (randomStaticImage && randomDynamicImage) {
+    const randomInt = getRandomInt(0, 1);
 
-  if (randomInt === 0) {
+    if (randomInt === 0) {
+      return randomDynamicImage;
+    }
+
+    return randomStaticImage;
+  }
+
+  if (randomDynamicImage && !randomStaticImage) {
     return randomDynamicImage;
   }
 
