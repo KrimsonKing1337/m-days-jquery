@@ -108,8 +108,6 @@ $(async () => {
 
     try {
       await putNewPreset(newPreset);
-
-      // todo: реализовать удаление пресета - axios.delete, на бэке обрабатывать запрос
     } catch (error) {
       const err = error as AxiosError;
 
