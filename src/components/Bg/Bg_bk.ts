@@ -1,6 +1,6 @@
 import './Bg.scss';
 
-import { fetchImage } from './utils';
+import { fetchImage } from './utils/utils';
 
 $(async () => {
   const $bg = $('.js-bg');
