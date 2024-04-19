@@ -1,16 +1,9 @@
-import { getBg } from 'api';
 import { getRandomInt } from 'utils/getRandomInt';
 
 import { getRandomStaticImage } from './getRandomStaticImage';
 import { getRandomDynamicImage } from './getRandomDynamicImage';
 
 import { Preset } from '@types';
-
-export const fetchImage = async () => {
-  const image = await getBg();
-
-  return JSON.stringify(image.data);
-};
 
 export const getRandomImage = (presetInfo: Preset) => {
   const randomStaticImage = getRandomStaticImage(presetInfo);
