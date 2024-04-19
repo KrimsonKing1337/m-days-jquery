@@ -50,7 +50,7 @@ $(async () => {
       const $checkboxCur = $(checkboxCur);
 
       const key = $checkboxCur.data('key');
-      const id = $checkboxCur.attr('id');
+      const id = $checkboxCur.data('id');
 
       const value = `${key}/${id}`;
 
@@ -137,6 +137,7 @@ $(async () => {
         'id': `static-${optionCur}`,
         name: 'static-chosen-ones',
         'data-key': key,
+        'data-id': optionCur,
         'data-type': 'static',
       });
 
@@ -166,6 +167,7 @@ $(async () => {
         'id': `dynamic-${optionCur}`,
         name: 'dynamic-chosen-ones',
         'data-key': key,
+        'data-id': optionCur,
         'data-type': 'dynamic',
       });
 
