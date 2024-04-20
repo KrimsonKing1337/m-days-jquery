@@ -50,18 +50,41 @@ $(async () => {
       const $checkboxCur = $(checkboxCur);
 
       const key = $checkboxCur.data('key');
-      const id = $checkboxCur.data('id');
+      let id = $checkboxCur.data('id');
 
-      const value = `${key}/${id}`;
+      if (id.includes('__multi')) {
+        id = id.replace('__multi', '');
 
-      staticOptionsArray.push(value);
+        const allIdsOfMultiElements = $(`[name="static-chosen-ones"][data-id^="${id}_"]`).get();
+
+        const allIdsOfMulti: string[] = [];
+
+        [...allIdsOfMultiElements].forEach((cur) => {
+          const $cur = $(cur);
+          const id = $cur.data('id');
+
+          if (id.includes('__multi')) {
+            return;
+          }
+
+          const value = `${key}/${id}`;
+
+          allIdsOfMulti.push(value);
+        });
+
+        staticOptionsArray.push(...allIdsOfMulti);
+      } else {
+        const value = `${key}/${id}`;
+
+        staticOptionsArray.push(value);
+      }
     });
 
     chosenOptionsDynamicElements.forEach(checkboxCur => {
       const $checkboxCur = $(checkboxCur);
 
       const key = $checkboxCur.data('key');
-      const id = $checkboxCur.attr('id');
+      const id = $checkboxCur.data('id');
 
       const value = `${key}/${id}`;
 
@@ -118,8 +141,8 @@ $(async () => {
     }
   });
 
-  Object.keys(contentOptions).forEach((key) => {
-    const options = contentOptions[key] as string[];
+  Object.keys(contentOptions.static).forEach((key) => {
+    const options = contentOptions.static[key] as string[];
 
     const $newCheckboxesWrapper = $(`<div class="CheckboxesWrapper"></div>`);
     const $newCheckboxesWrapperLabel = $(`<div class="CheckboxesWrapperLabel">${key}</div>`);
@@ -148,8 +171,8 @@ $(async () => {
     });
   });
 
-  Object.keys(contentOptions).forEach((key) => {
-    const options = contentOptions[key] as string[];
+  Object.keys(contentOptions.gif).forEach((key) => {
+    const options = contentOptions.gif[key] as string[];
 
     const $newCheckboxesWrapper = $(`<div class="CheckboxesWrapper"></div>`);
     const $newCheckboxesWrapperLabel = $(`<div class="CheckboxesWrapperLabel">${key}</div>`);
