@@ -34,7 +34,7 @@
   justify-content: flex-start;
   margin-top: 15px;
   gap: 15px;
-  height: 25px;
+  height: 36px;
   overflow: hidden;
   padding: 5px;
   border: 1px #111 solid;
@@ -86,4 +86,22 @@
   margin-bottom: 15px;
   border: 1px red solid;
   padding: 5px;
+}
+
+.GifFormatsCheckboxesWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.GifFormatCheckboxWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  input {
+    margin-left: 5px;
+  }
 }
