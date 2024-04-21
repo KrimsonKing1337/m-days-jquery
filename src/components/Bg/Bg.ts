@@ -12,7 +12,7 @@ $(async () => {
   const $progressBarsDull = $('.js-progress-bars-dull');
 
   const $progressBar = $('.js-progress-bar');
-  const $progressBarCuberpunk = $('.js-progress-bar-vaporwave');
+  const $progressBarCyberpunk = $('.js-progress-bar-vaporwave');
 
   const searchParams = new URLSearchParams(window.location.search);
   const preset = searchParams.get('preset') || 'default';
@@ -51,7 +51,7 @@ $(async () => {
     $progressBar.remove();
     setSkin('cyberpunk');
   } else {
-    $progressBarCuberpunk.remove();
+    $progressBarCyberpunk.remove();
   }
 
   $progressBarsDull.hide();

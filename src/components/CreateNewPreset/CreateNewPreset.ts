@@ -118,12 +118,13 @@ $(async () => {
 
     const name = $presetNameInput.val() as string;
 
-    let resolution = '';
+    if (!$resolutionWInput.val() || !$resolutionHInput.val()) {
+      alert('Resolution is not correct!');
 
-    if ($resolutionWInput.val() && $resolutionHInput.val()) {
-      resolution += `w: ${$resolutionWInput.val()}, `;
-      resolution += `h: ${$resolutionHInput.val()}`;
+      return;
     }
+
+    const resolution = `${$resolutionWInput.val()}*${$resolutionHInput.val()}`;
 
     let skin = 'default';
 

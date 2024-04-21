@@ -30,7 +30,13 @@ export function getRandomStaticImage(presetInfo: Preset) {
   let randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
 
   if (!randomStaticImagesInOneWidth) {
-    staticImgPath = `${prefix}/${randomStaticTopic}/${randomFormat}`;
+    const availableFormatsPath = `${prefix}.${randomStaticTopic}`;
+    const availableFormatsObj = get(imgBgJson, availableFormatsPath);
+    const availableFormats = Object.keys(availableFormatsObj);
+    const randomAvailableFormatIndex = getRandomInt(0, availableFormats.length - 1);
+    const randomAvailableFormat = availableFormats[randomAvailableFormatIndex];
+
+    staticImgPath = `${prefix}/${randomStaticTopic}/${randomAvailableFormat}`;
     staticImgPathWithoutSlashes = staticImgPath.replace(/\//g, '.');
 
     randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
@@ -38,7 +44,7 @@ export function getRandomStaticImage(presetInfo: Preset) {
     const randomStaticImagesInOneWidthKeys = Object.keys(randomStaticImagesInOneWidth);
     const randomStaticImagesWidth = randomStaticImagesInOneWidthKeys[randomStaticImagesInOneWidthKeys.length - 1];
 
-    staticImgPath = `${prefix}/${randomStaticTopic}/${randomFormat}/${randomStaticImagesWidth}`;
+    staticImgPath = `${prefix}/${randomStaticTopic}/${randomAvailableFormat}/${randomStaticImagesWidth}`;
     staticImgPathWithoutSlashes = staticImgPath.replace(/\//g, '.');
 
     randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
