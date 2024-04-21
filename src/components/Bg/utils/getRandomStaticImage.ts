@@ -30,8 +30,9 @@ export function getRandomStaticImage(presetInfo: Preset) {
   let randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
 
   if (!randomStaticImagesInOneWidth) {
-    const availableFormatsPath = `${prefix}.${randomStaticTopic}`;
+    const availableFormatsPath = `${prefix}/${randomStaticTopic}`.replace(/\//g, '.');
     const availableFormatsObj = get(imgBgJson, availableFormatsPath);
+
     const availableFormats = Object.keys(availableFormatsObj);
     const randomAvailableFormatIndex = getRandomInt(0, availableFormats.length - 1);
     const randomAvailableFormat = availableFormats[randomAvailableFormatIndex];
