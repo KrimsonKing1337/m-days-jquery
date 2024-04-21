@@ -9,18 +9,18 @@ import imgBgJson from 'img_bg.json';
 const prefix = 'dynamic';
 
 export function getRandomDynamicImage(presetInfo: Preset) {
-  const { dynamicTopics, gifFormat } = presetInfo;
+  const { dynamicTopics, formats } = presetInfo;
 
   const dynamicTopicsAsArr = dynamicTopics.split(', ');
-  const gifFormatAsArr = gifFormat.split(', ');
+  const formatAsArr = formats.split(', ');
 
   const randomDynamicTopicIndex = getRandomInt(0, dynamicTopicsAsArr.length - 1);
-  const randomGifFormatIndex = getRandomInt(0, gifFormatAsArr.length - 1);
+  const randomFormatIndex = getRandomInt(0, formatAsArr.length - 1);
 
   const randomDynamicTopic = dynamicTopicsAsArr[randomDynamicTopicIndex];
-  const randomGifFormat = gifFormatAsArr[randomGifFormatIndex];
+  const randomFormat = formatAsArr[randomFormatIndex];
 
-  let dynamicImgPath = `${prefix}/${randomDynamicTopic}/${randomGifFormat}`;
+  let dynamicImgPath = `${prefix}/${randomDynamicTopic}/${randomFormat}`;
   let dynamicImgPathWithoutSlashes = dynamicImgPath.replace(/\//g, '.');
 
   const randomDynamicImagesInOneFormat = get(imgBgJson, dynamicImgPathWithoutSlashes) || {};
@@ -29,7 +29,7 @@ export function getRandomDynamicImage(presetInfo: Preset) {
   const randomDynamicImagesInOneSizeIndex = getRandomInt(0, randomDynamicImagesInOneSizeKeys.length - 1);
   const randomDynamicImagesSize = randomDynamicImagesInOneSizeKeys[randomDynamicImagesInOneSizeIndex];
 
-  dynamicImgPath = `${prefix}/${randomDynamicTopic}/${randomGifFormat}/${randomDynamicImagesSize}`;
+  dynamicImgPath = `${prefix}/${randomDynamicTopic}/${randomFormat}/${randomDynamicImagesSize}`;
   dynamicImgPathWithoutSlashes = dynamicImgPath.replace(/\//g, '.');
 
   const randomDynamicImagesInOneSize = get(imgBgJson, dynamicImgPathWithoutSlashes) || {};
