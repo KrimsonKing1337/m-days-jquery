@@ -12,13 +12,13 @@ export function getRandomDynamicImage(presetInfo: Preset) {
   const { dynamicTopics, formats } = presetInfo;
 
   const dynamicTopicsAsArr = dynamicTopics.split(', ');
-  const formatAsArr = formats.split(', ');
+  const formatsAsArr = formats.split(', ');
 
   const randomDynamicTopicIndex = getRandomInt(0, dynamicTopicsAsArr.length - 1);
-  const randomFormatIndex = getRandomInt(0, formatAsArr.length - 1);
+  const randomFormatIndex = getRandomInt(0, formatsAsArr.length - 1);
 
   const randomDynamicTopic = dynamicTopicsAsArr[randomDynamicTopicIndex];
-  const randomFormat = formatAsArr[randomFormatIndex];
+  const randomFormat = formatsAsArr[randomFormatIndex];
 
   let dynamicImgPath = `${prefix}/${randomDynamicTopic}/${randomFormat}`;
   let dynamicImgPathWithoutSlashes = dynamicImgPath.replace(/\//g, '.');
