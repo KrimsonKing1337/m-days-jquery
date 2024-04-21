@@ -5,14 +5,16 @@ import { Preset } from '@types';
 import { getRandomInt } from 'utils/getRandomInt';
 
 import imgBgJson from 'img_bg.json';
+import { getWidths } from './getWidths';
 
 const prefix = 'static';
 
 export function getRandomStaticImage(presetInfo: Preset) {
-  const { staticTopics, width } = presetInfo;
+  const { staticTopics, resolution } = presetInfo;
+
+  const widthAsArr = getWidths(resolution);
 
   const staticTopicsAsArr = staticTopics.split(', ');
-  const widthAsArr = width.split(', ');
 
   const randomStaticTopicIndex = getRandomInt(0, staticTopicsAsArr.length - 1);
   const randomWidthIndex = getRandomInt(0, widthAsArr.length - 1);
