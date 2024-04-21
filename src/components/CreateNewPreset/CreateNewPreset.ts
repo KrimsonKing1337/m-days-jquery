@@ -17,7 +17,6 @@ $(async () => {
   const $resolutionHInput = $('#input-h') as JQuery<HTMLInputElement>;
 
   const $skinSelect = $('#skin-select') as JQuery<HTMLSelectElement>;
-  const $inputWidth = $('.js-input-width') as JQuery<HTMLInputElement>;
 
   const $contentOptionsWrapper = $('.js-content-options-wrapper') as JQuery<HTMLDivElement>;
   const $contentStaticOptionsWrapper = $('.js-content-static-options-wrapper') as JQuery<HTMLDivElement>;
@@ -43,11 +42,11 @@ $(async () => {
   $submitButton.on('click', async () => {
     const chosenOptionsStaticElements = $('[name="static-chosen-ones"]:checked').get();
     const chosenOptionsDynamicElements = $('[name="dynamic-chosen-ones"]:checked').get();
-    const chosenOptionsGifFormatsElements = $('[name="gif-formats"]:checked').get();
+    const chosenOptionsFormatsElements = $('[name="formats"]:checked').get();
 
     const staticOptionsArray: string[] = [];
     const dynamicOptionsArray: string[] = [];
-    const gifFormatsOptionsArray: string[] = [];
+    const formatsOptionsArray: string[] = [];
 
     chosenOptionsStaticElements.forEach(checkboxCur => {
       const $checkboxCur = $(checkboxCur);
@@ -94,11 +93,11 @@ $(async () => {
       dynamicOptionsArray.push(value);
     });
 
-    chosenOptionsGifFormatsElements.forEach((gifFormatCur) => {
-      const $gifFormatCur = $(gifFormatCur);
-      const id = $gifFormatCur.data('id');
+    chosenOptionsFormatsElements.forEach((formatCur) => {
+      const $formatCur = $(formatCur);
+      const id = $formatCur.data('id');
 
-      gifFormatsOptionsArray.push(id);
+      formatsOptionsArray.push(id);
     });
 
     if (!$presetNameInput.val()) {
@@ -115,7 +114,7 @@ $(async () => {
 
     const staticTopics = staticOptionsArray.join(', ');
     const dynamicTopics = dynamicOptionsArray.join(', ');
-    const gifFormat = gifFormatsOptionsArray.join(', ');
+    const formats = formatsOptionsArray.join(', ');
 
     const name = $presetNameInput.val() as string;
 
@@ -132,16 +131,13 @@ $(async () => {
       skin = $skinSelect.val() as string;
     }
 
-    const widthValue = $inputWidth.val() as string || '';
-
     const newPreset: Preset = {
       id: name,
       staticTopics,
       dynamicTopics,
       resolution,
       skin,
-      width: widthValue,
-      gifFormat,
+      formats,
     };
 
     try {

@@ -20,7 +20,7 @@ export type WeatherResp = {
 
 export enum Themes {
   'default' = 'default',
-  'vaporwave' = 'vaporwave',
+  'cyberpunk' = 'cyberpunk',
 }
 
 export type Preset = {
@@ -31,6 +31,5 @@ export type Preset = {
   dynamicTopics: string;
   resolution: string;
   skin: string;
-  width: string;
-  gifFormat: string;
+  formats: string;
 };
