@@ -44,7 +44,17 @@ export function getRandomStaticImage(presetInfo: Preset) {
     randomStaticImagesInOneWidth = get(imgBgJson, staticImgPathWithoutSlashes);
 
     const randomStaticImagesInOneWidthKeys = Object.keys(randomStaticImagesInOneWidth);
-    const randomStaticImagesWidth = randomStaticImagesInOneWidthKeys[randomStaticImagesInOneWidthKeys.length - 1];
+
+    const randomStaticImagesInOneWidthKeysIndex = randomStaticImagesInOneWidthKeys.indexOf(randomWidth);
+
+    let randomStaticImagesWidth = randomStaticImagesInOneWidthKeys[randomStaticImagesInOneWidthKeysIndex];
+
+    // todo: сделать по убывающей. сейчас берётся последняя доступная ширина, которая может быть 4к, например.
+    //  реализовать так: если 1920 и такой ширины нет, то спускаемся ниже, на 1600. если и этого нет - то ещё дальше.
+    //  и лишь в самом конце берём последнее из массива
+    if (!randomStaticImagesWidth) {
+      randomStaticImagesWidth = randomStaticImagesInOneWidthKeys[randomStaticImagesInOneWidthKeys.length - 1];
+    }
 
     staticImgPath = `${prefix}/${randomStaticTopic}/${randomAvailableFormat}/${randomStaticImagesWidth}`;
     staticImgPathWithoutSlashes = staticImgPath.replace(/\//g, '.');
