@@ -6,22 +6,23 @@ import { getRandomInt } from 'utils/getRandomInt';
 
 import imgBgJson from 'img_bg.json';
 import { getWidths } from './getWidths';
+import { getFormats } from './utils';
 
 const prefix = 'static';
 
 export function getRandomStaticImage(presetInfo: Preset) {
-  const { staticTopics, resolution, formats } = presetInfo;
+  const { staticTopics, resolution } = presetInfo;
 
   const widthAsArr = getWidths(resolution);
   const staticTopicsAsArr = staticTopics.split(', ');
-  const formatAsArr = formats.split(', ');
+  const formats = getFormats();
 
   const randomStaticTopicIndex = getRandomInt(0, staticTopicsAsArr.length - 1);
-  const randomFormatIndex = getRandomInt(0, formatAsArr.length - 1);
+  const randomFormatIndex = getRandomInt(0, formats.length - 1);
   const randomWidthIndex = getRandomInt(0, widthAsArr.length - 1);
   const randomStaticTopic = staticTopicsAsArr[randomStaticTopicIndex];
   const randomWidth = widthAsArr[randomWidthIndex];
-  const randomFormat = formatAsArr[randomFormatIndex];
+  const randomFormat = formats[randomFormatIndex];
 
   let staticImgPath = `${prefix}/${randomStaticTopic}/${randomFormat}/${randomWidth}`;
 

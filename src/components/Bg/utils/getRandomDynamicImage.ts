@@ -5,20 +5,21 @@ import { Preset } from '@types';
 import { getRandomInt } from 'utils/getRandomInt';
 
 import imgBgJson from 'img_bg.json';
+import { getFormats } from './utils';
 
 const prefix = 'dynamic';
 
 export function getRandomDynamicImage(presetInfo: Preset) {
-  const { dynamicTopics, formats } = presetInfo;
+  const { dynamicTopics } = presetInfo;
 
   const dynamicTopicsAsArr = dynamicTopics.split(', ');
-  const formatsAsArr = formats.split(', ');
+  const formats = getFormats();
 
   const randomDynamicTopicIndex = getRandomInt(0, dynamicTopicsAsArr.length - 1);
-  const randomFormatIndex = getRandomInt(0, formatsAsArr.length - 1);
+  const randomFormatIndex = getRandomInt(0, formats.length - 1);
 
   const randomDynamicTopic = dynamicTopicsAsArr[randomDynamicTopicIndex];
-  const randomFormat = formatsAsArr[randomFormatIndex];
+  const randomFormat = formats[randomFormatIndex];
 
   let dynamicImgPath = `${prefix}/${randomDynamicTopic}/${randomFormat}`;
   let dynamicImgPathWithoutSlashes = dynamicImgPath.replace(/\//g, '.');

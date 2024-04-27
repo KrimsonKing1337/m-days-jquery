@@ -25,3 +25,15 @@ export const getRandomImage = (presetInfo: Preset) => {
 
   return randomStaticImage;
 }
+
+export const getFormats = () => {
+  if (window.innerHeight > window.innerWidth) {
+    return ['h', 'v', 'sq'];
+  }
+
+  if (window.innerWidth > window.innerHeight) {
+    return ['h', 'sq'];
+  }
+
+  return ['h', 'v', 'sq'];
+};
