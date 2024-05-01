@@ -26,11 +26,11 @@ $(async () => {
   }
 
   const changeImage = () => {
-    $bg.css('background-image', `url(${bgNext})`);
+    $bg.css('background-image', `url(/${bgNext})`);
 
     bgNext = getRandomImage(presetInfo);
 
-    $bgNext.css('background-image', `url(${bgNext})`);
+    $bgNext.css('background-image', `url(/${bgNext})`);
   }
 
   changeImage();

@@ -211,7 +211,7 @@ module.exports = (env = {}, argv) => {
       ],
     },
     output: {
-      publicPath: '/',
+      publicPath: './',
       path: buildDir,
       filename: '[name]_[contenthash].js',
     },
