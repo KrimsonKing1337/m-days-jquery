@@ -209,6 +209,9 @@ module.exports = (env = {}, argv) => {
           // secure: false,
         },
       ],
+      devMiddleware: {
+        writeToDisk: true, // без этого почему-то ошибка: cannot get /
+      },
     },
     output: {
       publicPath: './',
