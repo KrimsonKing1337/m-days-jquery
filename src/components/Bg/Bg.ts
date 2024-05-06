@@ -8,6 +8,12 @@ import { setSkin } from '../Weather/Weather';
 import imgBgJson from 'img_bg.json';
 
 $(async () => {
+  const rootElement = document.querySelector('#root');
+
+  if (!rootElement) {
+    return;
+  }
+
   const $bg = $('.js-bg');
   const $bgNext = $('.js-bg-next');
   const $animWrapper = $('.js-anim-wrapper');

@@ -9,6 +9,12 @@ import './CreateNewPreset.scss';
 import { fetchContentOptions } from './utils';
 
 $(async () => {
+  const configRootElement = document.querySelector('#config-root');
+
+  if (!configRootElement) {
+    return;
+  }
+
   const contentOptions = await fetchContentOptions();
 
   const $presetNameDeleteInput = $('#input-delete') as JQuery<HTMLInputElement>;

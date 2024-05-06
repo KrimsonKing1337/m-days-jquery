@@ -5,6 +5,12 @@ import { twoDigitsAlways, getValuesForProgressBar } from 'm-days-core/utils';
 import { getPercentForDay } from './utils';
 
 $(() => {
+  const rootElement = document.querySelector('#root');
+
+  if (!rootElement) {
+    return;
+  }
+
   const $parent = $('.js-progress-bar-vaporwave');
 
   const $date = $parent.find('.js-date');

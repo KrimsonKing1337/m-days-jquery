@@ -7,6 +7,12 @@ import { twoDigitsAlways, getValuesForProgressBar } from 'm-days-core/utils';
 import { Themes } from '@types';
 
 $(() => {
+  const rootElement = document.querySelector('#root');
+
+  if (!rootElement) {
+    return;
+  }
+
   const theme = new URLSearchParams(window.location.search).get('theme');
 
   const $parent = $('.js-progress-bar');

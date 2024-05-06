@@ -107,6 +107,12 @@ async function updateWeather() {
 }
 
 $(() => {
+  const rootElement = document.querySelector('#root');
+
+  if (!rootElement) {
+    return;
+  }
+
   setSkin('default');
 
   updateWeather();
