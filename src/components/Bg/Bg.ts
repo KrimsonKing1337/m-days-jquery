@@ -1,6 +1,7 @@
 import './Bg.scss';
 
-import { getRandomImage } from 'm-days-core/utils/getRandomImage/getRandomImage';
+import type { ImageJson } from 'm-days-core/@types.js';
+import { getRandomImageInfo } from 'm-days-core/utils/getRandomImageInfo/getRandomImageInfo';
 
 import { getInfoAboutPreset } from 'api';
 import { setSkin } from '../Weather/Weather';
@@ -28,18 +29,18 @@ $(async () => {
 
   const presetInfo = await getInfoAboutPreset(preset);
 
-  let bgNext = getRandomImage(presetInfo, imgBgJson);
+  let bgNext = getRandomImageInfo(presetInfo, imgBgJson) as ImageJson;
 
   const changeOpacity = (value: string) => {
     $animWrapper.css('opacity', value);
   }
 
   const changeImage = () => {
-    $bg.css('background-image', `url(/${bgNext})`);
+    $bg.css('background-image', `url(/${bgNext.path})`);
 
-    bgNext = getRandomImage(presetInfo, imgBgJson);
+    bgNext = getRandomImageInfo(presetInfo, imgBgJson) as ImageJson;
 
-    $bgNext.css('background-image', `url(/${bgNext})`);
+    $bgNext.css('background-image', `url(/${bgNext.path})`);
   }
 
   changeImage();
