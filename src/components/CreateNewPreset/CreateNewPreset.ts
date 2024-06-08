@@ -21,6 +21,7 @@ $(async () => {
   const $presetNameInput = $('#input') as JQuery<HTMLInputElement>;
   const $resolutionWInput = $('#input-w') as JQuery<HTMLInputElement>;
   const $resolutionHInput = $('#input-h') as JQuery<HTMLInputElement>;
+  const $fileSizeInput = $('#input-file-size') as JQuery<HTMLInputElement>;
 
   const $skinSelect = $('#skin-select') as JQuery<HTMLSelectElement>;
 
@@ -138,6 +139,8 @@ $(async () => {
       skin = $skinSelect.val() as string;
     }
 
+    const fileSize = $fileSizeInput.val() as string;
+
     const newPreset: Preset = {
       id: name,
       staticTopics,
@@ -145,6 +148,7 @@ $(async () => {
       resolution,
       skin,
       formats,
+      fileSize,
     };
 
     try {

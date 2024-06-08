@@ -32,4 +32,5 @@ export type Preset = {
   resolution: string;
   skin: string;
   formats: string;
+  fileSize: string;
 };
