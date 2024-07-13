@@ -26,7 +26,7 @@
     "axios": "^0.21.2",
     "bluebird": "^3.7.2",
     "lodash-es": "^4.17.21",
-    "m-days-core": "file:../m-days-core/tgz/m-days-core-0.0.73.tgz",
+    "m-days-core": "file:../m-days-core/tgz/m-days-core-0.0.76.tgz",
     "moment": "^2.29.4",
     "query-string": "^8.1.0",
     "reset-css": "^5.0.1",

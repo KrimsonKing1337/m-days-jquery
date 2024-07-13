@@ -1,3 +1,5 @@
+import 'url-search-params-polyfill';
+
 import './Bg.scss';
 
 import type { ImageJson } from 'm-days-core/@types.js';
