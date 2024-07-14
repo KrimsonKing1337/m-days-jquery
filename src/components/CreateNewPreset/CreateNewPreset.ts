@@ -171,7 +171,7 @@ $(async () => {
     $contentStaticOptionsWrapper.append($newCheckboxesWrapper);
 
     options.forEach((optionCur) => {
-      const $newCheckboxWrapper = $('<div class="CheckboxWrapper">');
+      const $newCheckboxWrapper = $('<div class="CheckboxWrapper js-checkbox-wrapper">');
       const $newLabel = $(`<label for="static-${optionCur}">${optionCur}</label>`);
 
       const $newCheckbox = $('<input />', {
@@ -193,7 +193,7 @@ $(async () => {
   Object.keys(contentOptions.gif).forEach((key) => {
     const options = contentOptions.gif[key] as string[];
 
-    const $newCheckboxesWrapper = $(`<div class="CheckboxesWrapper"></div>`);
+    const $newCheckboxesWrapper = $(`<div class="CheckboxesWrapper js-checkbox-wrapper"></div>`);
     const $newCheckboxesWrapperLabel = $(`<div class="CheckboxesWrapperLabel">${key}</div>`);
 
     $newCheckboxesWrapper.append($newCheckboxesWrapperLabel);
@@ -218,5 +218,12 @@ $(async () => {
       $newCheckboxWrapper.append($newLabel);
       $newCheckboxWrapper.append($newCheckbox);
     });
+  });
+
+  // элементы получаем именно здесь, потому что до этого их не существует
+  const $checkBoxWrappers = $('.js-checkbox-wrapper') as JQuery<HTMLDivElement>;
+
+  $checkBoxWrappers.on('click', (e) => {
+    e.stopPropagation();
   });
 });
