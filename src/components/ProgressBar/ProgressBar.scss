@@ -10,6 +10,10 @@
   margin: auto;
   height: 100%;
   width: 100%;
+
+  &.no-gui {
+    display: none;
+  }
 }
 
 .Shadow {
@@ -40,7 +44,8 @@
   color: #fff;
   opacity: 0.65;
 
-  &.no-percent {
+  &.no-percent,
+  &.no-gui {
     display: none;
   }
 }

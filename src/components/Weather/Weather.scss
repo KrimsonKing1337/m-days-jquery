@@ -4,6 +4,10 @@
   left: 50px;
   z-index: 1;
   text-align: center;
+
+  &.no-gui {
+    display: none;
+  }
 }
 
 .WeatherIcon {
