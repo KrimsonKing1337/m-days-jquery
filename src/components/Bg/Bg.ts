@@ -134,8 +134,9 @@ $(async () => {
     }
 
     const { href } = window.location;
+    const hrefWithoutParams = href.split('?')[0];
 
-    window.location.href = `${href.split('?')[0]}${params}`;
+    window.location.href = `${hrefWithoutParams}${params}&preset=${preset}`;
   });
 
   $progressBarsDull.hide();
