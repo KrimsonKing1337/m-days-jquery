@@ -133,7 +133,9 @@ $(async () => {
       params = params.replace('&', '');
     }
 
-    window.location.href = `/${params}`;
+    const { href } = window.location;
+
+    window.location.href = `${href.split('?')[0]}${params}`;
   });
 
   $progressBarsDull.hide();
