@@ -27,13 +27,15 @@
   background-size: cover;
 }
 
-.QrIcon {
+.WaterMarkMain {
   position: absolute;
-  z-index: 1;
-  bottom: 50px;
+  z-index: 3;
+  bottom: 15px;
   right: 50px;
-  height: 125px;
-  width: 125px;
+  height: 42px;
+  width: 132px;
+  color: #fff;
+  font-size: 32px;
 }
 
 .ProgressBarsWrapper {
