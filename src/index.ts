@@ -6,6 +6,7 @@ import './vendors/jquery-1.9.1.min.js';
 import './vendors/bluebird.min.js';
 
 import './components/Bg/Bg';
+import './components/Menu/Menu';
 // todo: пересекаются css классы и css классы для js.
 //  использовать либо БЭМ, либо css модули как-то прикрутить
 import './components/ProgressBar/ProgressBar';
