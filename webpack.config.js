@@ -7,6 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
+const localPublicFolder = path.join(__dirname, 'public');
 const publicFolder = path.join(__dirname, '../m-days-public/');
 const fontsFolder = path.join(__dirname, '../m-days-core/src/assets/fonts/');
 
@@ -49,6 +50,10 @@ module.exports = (env = {}, argv) => {
     }),
     new CopyWebpackPlugin({
       patterns: [
+        {
+          from: `${localPublicFolder}/`,
+          to: './',
+        },
         {
           from: `${publicFolder}/`,
           to: './',
