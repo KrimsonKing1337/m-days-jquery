@@ -7,6 +7,11 @@ type Checkbox = {
   label: string;
 };
 
+type Topic = {
+  imgSrc: string;
+  label: string;
+}
+
 const checkboxes: Checkbox[] = [
   {
     id: 'noPercent',
@@ -18,8 +23,50 @@ const checkboxes: Checkbox[] = [
   },
 ];
 
+const topics: Topic[] = [
+  {
+    imgSrc: 'anime.jpg',
+    label: 'Anime',
+  },
+  {
+    imgSrc: 'b&w.jpg',
+    label: 'B&W',
+  },
+  {
+    imgSrc: 'colors.jpg',
+    label: 'Colors',
+  },
+  {
+    imgSrc: 'classical-arts.jpg',
+    label: 'Classical arts',
+  },
+  {
+    imgSrc: 'cyberpunk.jpg',
+    label: 'Cyberpunk',
+  },
+  {
+    imgSrc: 'nature-seasons.jpg',
+    label: 'Nature Seasons',
+  },
+  {
+    imgSrc: 'synthwave.jpg',
+    label: 'Synthwave',
+  },
+  {
+    imgSrc: 'urban.jpg',
+    label: 'Urban',
+  },
+  {
+    imgSrc: 'vaporwave.jpg',
+    label: 'Vaporwave',
+  },
+];
+
+const pathToImagesForTopics = 'imagesForTopics';
+
 $(() => {
   const $checkboxesWrapper = $('.js-checkboxes-wrapper');
+  const $topicsWrapper = $('.js-topics-wrapper');
 
   const $menu = $('.js-menu');
   const $menuButton = $('.js-menu-button');
@@ -40,6 +87,22 @@ $(() => {
     $wrapper.append($checkbox);
 
     $checkboxesWrapper.append($wrapper);
+  });
+
+  topics.forEach((topicCur) => {
+    const { label, imgSrc } = topicCur;
+
+    const imageSrc = `${pathToImagesForTopics}/${imgSrc}`;
+
+    const $wrapper = $('<div class="MenuTopic"></div>');
+
+    const $img = $(`<img src="${imageSrc}" alt="" class="MenuTopicImage" />`);
+    const $label = $(`<div class="MenuTopicLabel">${label}</div>`);
+
+    $wrapper.append($img);
+    $wrapper.append($label);
+
+    $topicsWrapper.append($wrapper);
   });
 
   $menuButton.on('click', () => {
