@@ -41,24 +41,29 @@ const topics: Topic[] = [
     label: 'Classical arts',
   },
   {
+    id: 'urban',
+    imgSrc: 'urban.jpg',
+    label: 'Urban',
+  },
+  {
+    id: 'nature_seasons',
+    imgSrc: 'nature-seasons.jpg',
+    label: 'Nature',
+  },
+  {
+    id: 'anime',
+    imgSrc: 'anime.jpg',
+    label: 'Anime',
+  },
+  {
     id: 'cyberpunk',
     imgSrc: 'cyberpunk.jpg',
     label: 'Cyberpunk',
   },
   {
-    id: 'nature_seasons',
-    imgSrc: 'nature-seasons.jpg',
-    label: 'Nature Seasons',
-  },
-  {
     id: 'synthwave',
     imgSrc: 'synthwave.jpg',
     label: 'Synthwave',
-  },
-  {
-    id: 'urban',
-    imgSrc: 'urban.jpg',
-    label: 'Urban',
   },
   {
     id: 'vaporwave',
