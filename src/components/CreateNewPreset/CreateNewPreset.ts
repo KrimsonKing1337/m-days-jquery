@@ -193,7 +193,7 @@ $(async () => {
   Object.keys(contentOptions.gif).forEach((key) => {
     const options = contentOptions.gif[key] as string[];
 
-    const $newCheckboxesWrapper = $(`<div class="CheckboxesWrapper js-checkbox-wrapper"></div>`);
+    const $newCheckboxesWrapper = $(`<div class="CheckboxesWrapper"></div>`);
     const $newCheckboxesWrapperLabel = $(`<div class="CheckboxesWrapperLabel">${key}</div>`);
 
     $newCheckboxesWrapper.append($newCheckboxesWrapperLabel);
@@ -201,7 +201,7 @@ $(async () => {
     $contentDynamicOptionsWrapper.append($newCheckboxesWrapper);
 
     options.forEach((optionCur) => {
-      const $newCheckboxWrapper = $('<div class="CheckboxWrapper">');
+      const $newCheckboxWrapper = $('<div class="CheckboxWrapper js-checkbox-wrapper">');
       const $newLabel = $(`<label for="dynamic-${optionCur}">${optionCur}</label>`);
 
       const $newCheckbox = $('<input />', {
