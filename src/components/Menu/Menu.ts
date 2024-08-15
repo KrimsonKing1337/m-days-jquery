@@ -8,6 +8,7 @@ type Checkbox = {
 };
 
 type Topic = {
+  id: string;
   imgSrc: string;
   label: string;
 }
@@ -25,38 +26,42 @@ const checkboxes: Checkbox[] = [
 
 const topics: Topic[] = [
   {
-    imgSrc: 'anime.jpg',
-    label: 'Anime',
-  },
-  {
+    id: 'default',
     imgSrc: 'b&w.jpg',
     label: 'B&W',
   },
   {
+    id: 'colors',
     imgSrc: 'colors.jpg',
     label: 'Colors',
   },
   {
+    id: 'classical_arts',
     imgSrc: 'classical-arts.jpg',
     label: 'Classical arts',
   },
   {
+    id: 'cyberpunk',
     imgSrc: 'cyberpunk.jpg',
     label: 'Cyberpunk',
   },
   {
+    id: 'nature_seasons',
     imgSrc: 'nature-seasons.jpg',
     label: 'Nature Seasons',
   },
   {
+    id: 'synthwave',
     imgSrc: 'synthwave.jpg',
     label: 'Synthwave',
   },
   {
+    id: 'urban',
     imgSrc: 'urban.jpg',
     label: 'Urban',
   },
   {
+    id: 'vaporwave',
     imgSrc: 'vaporwave.jpg',
     label: 'Vaporwave',
   },
@@ -71,9 +76,6 @@ $(() => {
   const $menu = $('.js-menu');
   const $menuButton = $('.js-menu-button');
   const $menuButtonApply = $('.js-menu-button-apply');
-
-  const searchParams = new URLSearchParams(window.location.search);
-  const preset = searchParams.get('preset') || 'default';
 
   checkboxes.forEach((checkboxCur) => {
     const { id, label } = checkboxCur;
@@ -94,7 +96,7 @@ $(() => {
 
     const imageSrc = `${pathToImagesForTopics}/${imgSrc}`;
 
-    const $wrapper = $('<div class="MenuTopic"></div>');
+    const $wrapper = $(`<div class="MenuTopic js-menu-topic"></div>`);
 
     const $img = $(`<img src="${imageSrc}" alt="" class="MenuTopicImage" />`);
     const $label = $(`<div class="MenuTopicLabel">${label}</div>`);
@@ -102,7 +104,17 @@ $(() => {
     $wrapper.append($img);
     $wrapper.append($label);
 
+    $wrapper.data('topic', topicCur);
+
     $topicsWrapper.append($wrapper);
+  });
+
+  $('.js-menu-topic').on('click', (e) => {
+    const $this = $(e.currentTarget);
+    const activeTopic = $('.js-menu-topic.isActive');
+
+    activeTopic.removeClass('isActive');
+    $this.addClass('isActive');
   });
 
   $menuButton.on('click', () => {
@@ -130,6 +142,14 @@ $(() => {
 
     if (percentUpdate !== '100') {
       params += `&percent-update-speed=${percentUpdate}`;
+    }
+
+    const $topic = $('.js-menu-topic.isActive');
+
+    let preset = 'default';
+
+    if ($topic.length) {
+      preset = $topic.data('topic').id;
     }
 
     if (params[1] === '&') {

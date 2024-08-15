@@ -65,11 +65,12 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   margin-top: 20px;
 }
 
 .MenuTopic {
+  position: relative;
   width: 400px;
   overflow: hidden;
   border: 1px #3d3d3d solid;
@@ -77,8 +78,32 @@
   margin-top: 10px;
   cursor: pointer;
 
+  &:before {
+    content: 'OK';
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    font-size: 42px;
+  }
+
   &:hover {
-    opacity: 0.4;
+    opacity: 0.5;
+  }
+
+  &.isActive {
+    opacity: 0.5;
+
+    &:before {
+      display: block;
+    }
   }
 }
 
