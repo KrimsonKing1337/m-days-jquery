@@ -21,7 +21,7 @@ $(() => {
 
   if (mrAsNumber) {
     setInterval(() => {
-      location.reload();
+      window.location.reload();
     }, mrAsNumber * 1000);
   }
 });
