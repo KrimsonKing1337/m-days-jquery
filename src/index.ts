@@ -1,3 +1,5 @@
+import 'url-search-params-polyfill';
+
 import './vendors';
 import './styles';
 import './components';
@@ -11,3 +13,15 @@ setTimeout(() => {
 }, 100);
 
 window.addEventListener('orientationchange', hideAddressBar);
+
+$(() => {
+  // mr = meta refresh
+  const mr = new URLSearchParams(window.location.search).get('mr'); // seconds
+  const mrAsNumber = Number(mr);
+
+  if (mrAsNumber) {
+    setInterval(() => {
+      location.reload();
+    }, mrAsNumber * 1000);
+  }
+});
