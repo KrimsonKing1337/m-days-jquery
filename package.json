@@ -5,7 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "webpack serve --mode=development",
+    "start:standalone": "webpack serve --mode=development --env standalone=true",
     "build": "webpack --mode=production",
+    "build:standalone": "node ./scripts/scanPublicImages.js && webpack --mode=production --env standalone=true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "browserslist": [

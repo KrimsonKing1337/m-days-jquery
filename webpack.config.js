@@ -1,4 +1,4 @@
-const { DefinePlugin, ProvidePlugin } = require('webpack');
+const { DefinePlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -15,7 +15,7 @@ const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
 
 module.exports = (env = {}, argv) => {
   const webpackMode = argv.mode;
-  const { analyze, mobile, sb } = env;
+  const { mobile, sb, standalone } = env;
   const isProd = webpackMode === 'production';
   const processEnv = dotenv.parsed;
 
@@ -35,6 +35,7 @@ module.exports = (env = {}, argv) => {
     new DefinePlugin({
       'process.env': JSON.stringify(processEnv),
       'isSbMode': JSON.stringify(sb),
+      'isStandalone': JSON.stringify(standalone),
     }),
     new HtmlWebpackPlugin({
       template: './src/pages/index.ejs',
@@ -229,6 +230,7 @@ module.exports = (env = {}, argv) => {
       modules: [
         path.resolve(__dirname, './src'),
         path.resolve(__dirname, './node_modules'),
+        path.resolve(localPublicFolder),
         path.resolve(publicFolder),
       ],
       alias: {
