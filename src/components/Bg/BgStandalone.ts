@@ -41,8 +41,6 @@ $(async () => {
   } else {
     $progressBarCyberpunk.remove();
   }
-
-
   //# endregion костыль
 
   let bgNext = getRandomImageStandalone(imgBgStandaloneJson);
