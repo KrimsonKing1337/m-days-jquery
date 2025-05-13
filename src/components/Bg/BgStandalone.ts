@@ -1,12 +1,12 @@
-import 'url-search-params-polyfill';
-
-import './Bg.scss';
-
 import imgBgStandaloneJson from 'standalone/img_bg.json';
 
-import { getRandomImageStandalone } from './utils/getRandomImageStandalone';
 import { Themes } from '@types';
+
+import { getRandomImageStandalone } from './utils/getRandomImageStandalone';
+
 import { setSkin } from '../Weather/Weather';
+
+import './Bg.scss';
 
 console.log('___ BgStandalone was loaded successfully');
 

@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { type AxiosResponse } from 'axios';
 
-import { Preset, WeatherResp } from './@types';
+import type { Preset, WeatherResp } from './@types';
 
 export type getCurrentWeatherParams = {
   latitude: number;
@@ -14,8 +14,6 @@ export async function getCurrentWeather({ protocol, latitude, longitude }: getCu
     longitude,
     current_weather: true,
   };
-
-  console.log(`latitude: ${params.latitude}, longitude: ${params.longitude}`);
 
   /*
   если делать https запрос, у safari на старых ios возникает ошибка: не могу установить безопасное соединение

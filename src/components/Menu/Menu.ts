@@ -1,5 +1,3 @@
-import 'url-search-params-polyfill';
-
 import './Menu.scss';
 
 type Checkbox = {

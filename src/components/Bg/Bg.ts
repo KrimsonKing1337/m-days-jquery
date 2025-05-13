@@ -1,14 +1,13 @@
-import 'url-search-params-polyfill';
-
-import './Bg.scss';
-
 import type { ImageJson } from 'm-days-core/@types.js';
 import { getRandomImageInfo } from 'm-days-core/utils/getRandomImageInfo/getRandomImageInfo';
 
 import { getInfoAboutPreset } from 'api';
+
 import { setSkin } from '../Weather/Weather';
 
 import imgBgJson from 'img_bg.json';
+
+import './Bg.scss';
 
 $(async () => {
   const rootElement = document.querySelector('#root');

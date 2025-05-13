@@ -1,5 +1,3 @@
-import { Promise } from 'bluebird';
-
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,

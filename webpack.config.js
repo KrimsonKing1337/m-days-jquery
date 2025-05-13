@@ -82,7 +82,16 @@ module.exports = (env = {}, argv) => {
           env: env,
         },
       }],
-      exclude: /node_modules/,
+      exclude: (modulePath) => {
+        return /node_modules/.test(modulePath)
+          && !/node_modules\/axios/.test(modulePath)
+          && !/node_modules\/bluebird/.test(modulePath)
+          && !/node_modules\/lodash-es/.test(modulePath)
+          && !/node_modules\/moment/.test(modulePath)
+          && !/node_modules\/query-string/.test(modulePath)
+          && !/node_modules\/reset-css/.test(modulePath)
+          && !/node_modules\/url-search-params-polyfill/.test(modulePath);
+      },
     },
     {
       test: /\.css$/,

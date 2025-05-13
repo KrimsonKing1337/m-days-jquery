@@ -1,7 +1,3 @@
-import './Weather.scss';
-
-import 'url-search-params-polyfill';
-
 import type { AxiosError } from 'axios';
 import type { WeatherResp } from 'm-days-core/@types';
 
@@ -10,6 +6,8 @@ import { getSrcOfWeatherIcon } from 'm-days-core/utils';
 import { getCurrentPosition } from 'utils/gpsApi';
 import { getCurrentWeather } from 'api';
 import { printObject } from 'utils/printObject';
+
+import './Weather.scss';
 
 function catchError(error: AxiosError) {
   if (error.response) {

@@ -28,12 +28,11 @@
     "axios": "^0.21.2",
     "bluebird": "^3.7.2",
     "lodash-es": "^4.17.21",
-    "m-days-core": "file:../m-days-core/tgz/m-days-core-0.0.76.tgz",
+    "m-days-core": "file:../m-days-core/tgz/m-days-core-0.0.80.tgz",
     "moment": "^2.29.4",
     "query-string": "^8.1.0",
     "reset-css": "^5.0.1",
-    "url-search-params-polyfill": "^8.2.5",
-    "whatwg-fetch": "^3.6.2"
+    "url-search-params-polyfill": "^8.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
@@ -45,7 +44,6 @@
     "@types/bluebird": "^3.5.42",
     "@types/jquery": "^3.5.16",
     "@types/lodash-es": "^4.17.12",
-    "@types/whatwg-fetch": "^0.0.33",
     "autoprefixer": "^10.4.14",
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",

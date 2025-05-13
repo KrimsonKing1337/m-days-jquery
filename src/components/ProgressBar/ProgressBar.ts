@@ -1,10 +1,8 @@
-import 'url-search-params-polyfill';
-
-import './ProgressBar.scss';
-
 import { twoDigitsAlways, getValuesForProgressBar } from 'm-days-core/utils';
 
 import { Themes } from '@types';
+
+import './ProgressBar.scss';
 
 $(() => {
   const rootElement = document.querySelector('#root');
