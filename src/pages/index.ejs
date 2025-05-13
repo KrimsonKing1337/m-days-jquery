@@ -111,28 +111,34 @@ var options = htmlWebpackPlugin.options;
 
   // ie <= 11, android <= 4.4.4, ios <= 8.4 does not support Array.prototype.includes
   if (!Array.prototype.includes) {
-    Array.prototype.includes = function(searchElement, fromIndex) {
+    Array.prototype.includes = function (searchElement, fromIndex) {
       if (this == null) {
         throw new TypeError('"this" is null or not defined');
       }
 
-      var o = Object(this);
-      var len = o.length >>> 0; // cast to UInt32
+      var array = Object(this); // Ensure object wrapping
+      var length = array.length >>> 0; // Cast to UInt32
 
-      if (len === 0) {
+      if (length === 0) {
         return false;
       }
 
-      var n = fromIndex | 0; // convert to integer
-      var k = Math.max(n >= 0 ? n : len + n, 0);
+      var startIndex = fromIndex | 0; // Convert to integer
+      var index = Math.max(startIndex >= 0 ? startIndex : length + startIndex, 0);
 
-      while (k < len) {
-        if (o[k] === searchElement
-          || (typeof o[k] === 'number' && typeof searchElement === 'number' && isNaN(o[k]) && isNaN(searchElement))) {
+      while (index < length) {
+        var currentElement = array[index];
+
+        var isNaNCheck = typeof currentElement === 'number'
+          && typeof searchElement === 'number'
+          && isNaN(currentElement)
+          && isNaN(searchElement);
+
+        if (currentElement === searchElement || isNaNCheck) {
           return true;
         }
 
-        k++;
+        index++;
       }
 
       return false;
